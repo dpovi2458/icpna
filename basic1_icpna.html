@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Interactivo: Basic 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutrals (Stone) with Soft Cyan Accent -->
+    <!-- Application Structure Plan: Se ha diseñado una estructura de SPA basada en pestañas de navegación (Descripción General, Unidad 1, 2, 3) que actualizan un área de contenido central. Este enfoque de 'hub de aprendizaje' es más intuitivo para material educativo que un informe lineal. La "Descripción General" incluye un gráfico de barras (Chart.js) que visualiza la cantidad de conceptos clave (vocabulario + gramática) por unidad. Cada sección de unidad se subdivide en 'Gramática' (presentación de reglas en tablas), 'Vocabulario' (flashcards interactivas) y 'Práctica' (ejercicios de autoevaluación). Este flujo permite al usuario elegir su ruta de estudio (explorar reglas, memorizar palabras, o practicar) y transforma el contenido estático del PDF en una herramienta de aprendizaje activa. -->
+    <!-- Visualization & Content Choices: 1. Estructura del Curso (3 Unidades): Goal=Informar. Viz=Gráfico de Barras (Chart.js/Canvas). Interaction=Hover para tooltips. Justification=Visualiza la carga de temas por unidad. 2. Reglas Gramaticales (Pronombres, Plurales): Goal=Organizar/Comparar. Viz=Tablas HTML con Tailwind. Interaction=N/A (Presentación clara). Justification=Método más claro para reglas comparativas. 3. Listas de Vocabulario (Países, Objetos): Goal=Memorizar/Interactuar. Viz='Flashcards' (HTML/JS). Interaction=Click para voltear (Español/Inglés), botones Siguiente/Anterior. Justification=Transforma listas estáticas en herramienta de estudio activa. 4. Ejercicios (Completar frases): Goal=Evaluar/Practicar. Viz=Formulario de Quiz (HTML/JS). Interaction=Input de usuario, botón 'Verificar' con feedback instantáneo. Justification=Digitaliza las hojas de trabajo del PDF para autoevaluación. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flashcard {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .flashcard-face {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flashcard.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+        .main-tab {
+            transition: all 0.3s ease;
+        }
+        .main-tab.active {
+            border-color: #0891B2;
+            background-color: #CFFAFE;
+            color: #0E7490;
+            font-weight: 600;
+        }
+        .unit-tab {
+            transition: all 0.3s ease;
+        }
+        .unit-tab.active {
+            background-color: #06B6D4;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 font-sans text-stone-800 antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-stone-700 mb-2">Resumen Interactivo: Basic 1</h1>
+            <p class="text-lg text-stone-600">Una herramienta de estudio para las Unidades 1-3</p>
+        </header>
+
+        <nav class="flex justify-center space-x-2 md:space-x-4 mb-8 border-b border-stone-300 pb-4">
+            <button class="main-tab active text-sm md:text-base font-medium text-stone-600 py-2 px-3 md:px-5 rounded-lg border-2 border-transparent hover:bg-stone-200" data-target="page-overview">Descripción General</button>
+            <button class="main-tab text-sm md:text-base font-medium text-stone-600 py-2 px-3 md:px-5 rounded-lg border-2 border-transparent hover:bg-stone-200" data-target="page-unit-1">Unidad 1</button>
+            <button class="main-tab text-sm md:text-base font-medium text-stone-600 py-2 px-3 md:px-5 rounded-lg border-2 border-transparent hover:bg-stone-200" data-target="page-unit-2">Unidad 2</button>
+            <button class="main-tab text-sm md:text-base font-medium text-stone-600 py-2 px-3 md:px-5 rounded-lg border-2 border-transparent hover:bg-stone-200" data-target="page-unit-3">Unidad 3</button>
+        </nav>
+
+        <main id="content-area">
+            
+            <section id="page-overview" class="page-content">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-cyan-700 mb-4">Bienvenido a tu Resumen Interactivo</h2>
+                    <p class="text-stone-700 mb-6">
+                        Esta aplicación convierte tu ficha de resumen en una herramienta de estudio. En lugar de solo leer, podrás explorar los conceptos clave, practicar el vocabulario con tarjetas interactivas ("flashcards") y probar tu conocimiento de la gramática con pequeños ejercicios.
+                    </p>
+                    <p class="text-stone-700 mb-6">
+                        Usa las pestañas de navegación de arriba para seleccionar una unidad y comenzar. La siguiente gráfica muestra los conceptos clave (temas de gramática y vocabulario) que se cubren en cada unidad.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="unitChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-unit-1" class="page-content hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold text-stone-700 mb-2">Unidad 1: Introductions</h2>
+                    <p class="text-lg text-stone-600 mb-6">Temas: Saludos, información personal y favoritos.</p>
+                    
+                    <div class="flex justify-center space-x-2 mb-6 border-b border-stone-200 pb-4">
+                        <button class="unit-tab active py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-1-grammar">Gramática</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-1-vocab">Vocabulario</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-1-practice">Práctica</button>
+                    </div>
+
+                    <div id="unit-1-grammar" class="unit-content">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Gramática: Verbo 'be'</h3>
+                        
+                        <h4 class="text-lg font-semibold text-stone-700 mt-4 mb-2">Pronombres de Sujeto y Adjetivos Posesivos</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max border border-stone-300 rounded-md">
+                                <thead class="bg-stone-100">
+                                    <tr>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Pronombre de Sujeto</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Ejemplo</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Adjetivo Posesivo</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Ejemplo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3">I</td>
+                                        <td class="p-3">I am a student.</td>
+                                        <td class="p-3">my</td>
+                                        <td class="p-3">My name is...</td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200 bg-stone-50">
+                                        <td class="p-3">you</td>
+                                        <td class="p-3">You are tall.</td>
+                                        <td class="p-3">your</td>
+                                        <td class="p-3">What's your name?</td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3">he</td>
+                                        <td class="p-3">He is my friend.</td>
+                                        <td class="p-3">his</td>
+                                        <td class="p-3">His last name is...</td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200 bg-stone-50">
+                                        <td class="p-3">she</td>
+                                        <td class="p-3">She is from Peru.</td>
+                                        <td class="p-3">her</td>
+                                        <td class="p-3">Her email is...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-stone-700 mt-6 mb-2">Preguntas Yes/No y Respuestas Cortas</h4>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li><span class="font-semibold">Are you</span> a student? <span class="text-green-600">Yes, I am.</span> / <span class="text-red-600">No, I'm not.</span></li>
+                            <li><span class="font-semibold">Is he</span> from Lima? <span class="text-green-600">Yes, he is.</span> / <span class="text-red-600">No, he isn't.</span></li>
+                            <li><span class="font-semibold">Are they</span> friends? <span class="text-green-600">Yes, they are.</span> / <span class="text-red-600">No, they aren't.</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div id="unit-1-vocab" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Vocabulario: Flashcards</h3>
+                        <p class="text-stone-600 mb-4 text-center">Haz clic en la tarjeta para ver la traducción.</p>
+                        
+                        <div class="relative w-full max-w-sm mx-auto h-48 perspective">
+                            <div id="flashcard-u1" class="flashcard relative w-full h-full">
+                                <div id="flashcard-u1-front" class="flashcard-face absolute w-full h-full bg-white border-2 border-cyan-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-stone-700"></span>
+                                </div>
+                                <div id="flashcard-u1-back" class="flashcard-face flashcard-back absolute w-full h-full bg-cyan-50 border-2 border-cyan-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-cyan-700"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between max-w-sm mx-auto mt-6">
+                            <button id="prev-u1" class="py-2 px-5 bg-stone-300 text-stone-700 font-semibold rounded-lg shadow hover:bg-stone-400">&larr; Anterior</button>
+                            <button id="next-u1" class="py-2 px-5 bg-cyan-600 text-white font-semibold rounded-lg shadow hover:bg-cyan-700">Siguiente &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div id="unit-1-practice" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Práctica: Completa la Oración</h3>
+                        
+                        <div class="space-y-4 max-w-md mx-auto">
+                            <div id="quiz-u1-item">
+                                <p id="quiz-u1-question" class="text-lg text-stone-700 mb-2 text-center"></p>
+                                <div class="flex space-x-2">
+                                    <input id="quiz-u1-input" type="text" class="flex-grow p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Escribe tu respuesta...">
+                                    <button id="quiz-u1-check" class="py-2 px-5 bg-cyan-600 text-white font-semibold rounded-lg shadow hover:bg-cyan-700">Verificar</button>
+                                </div>
+                                <p id="quiz-u1-feedback" class="mt-2 text-center font-medium h-6"></p>
+                            </div>
+                            <button id="quiz-u1-next" class="w-full py-2 px-5 bg-stone-600 text-white font-semibold rounded-lg shadow hover:bg-stone-700 hidden">Siguiente Pregunta</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-unit-2" class="page-content hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold text-stone-700 mb-2">Unidad 2: Countries</h2>
+                    <p class="text-lg text-stone-600 mb-6">Temas: Países, nacionalidades y descripción de ciudades.</p>
+
+                    <div class="flex justify-center space-x-2 mb-6 border-b border-stone-200 pb-4">
+                        <button class="unit-tab active py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-2-grammar">Gramática</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-2-vocab">Vocabulario</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-2-practice">Práctica</button>
+                    </div>
+
+                    <div id="unit-2-grammar" class="unit-content">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Gramática: Preguntas 'Wh-' y Adjetivos</h3>
+                        
+                        <h4 class="text-lg font-semibold text-stone-700 mt-4 mb-2">Preguntas con 'Who' y 'Where'</h4>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li><span class="font-semibold">Where</span> are you from? (¿De dónde eres?)<br><span class="ml-4">&rarr; I'm from Peru.</span></li>
+                            <li><span class="font-semibold">Who</span> is he? (¿Quién es él?)<br><span class="ml-4">&rarr; He's my friend.</span></li>
+                        </ul>
+
+                        <h4 class="text-lg font-semibold text-stone-700 mt-6 mb-2">Adjetivos con 'be'</h4>
+                        <p class="text-stone-700 mb-4">Usamos adjetivos después del verbo 'be' para describir lugares (y personas).</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li>Lima is <span class="font-semibold">big</span>.</li>
+                            <li>The park is <span class="font-semibold">beautiful</span>.</li>
+                            <li>The streets are <span class="font-semibold">busy</span>.</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="unit-2-vocab" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Vocabulario: Flashcards</h3>
+                        <p class="text-stone-600 mb-4 text-center">Haz clic en la tarjeta para ver la traducción.</p>
+                        
+                        <div class="relative w-full max-w-sm mx-auto h-48 perspective">
+                            <div id="flashcard-u2" class="flashcard relative w-full h-full">
+                                <div id="flashcard-u2-front" class="flashcard-face absolute w-full h-full bg-white border-2 border-cyan-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-stone-700"></span>
+                                </div>
+                                <div id="flashcard-u2-back" class="flashcard-face flashcard-back absolute w-full h-full bg-cyan-50 border-2 border-cyan-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-cyan-700"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between max-w-sm mx-auto mt-6">
+                            <button id="prev-u2" class="py-2 px-5 bg-stone-300 text-stone-700 font-semibold rounded-lg shadow hover:bg-stone-400">&larr; Anterior</button>
+                            <button id="next-u2" class="py-2 px-5 bg-cyan-600 text-white font-semibold rounded-lg shadow hover:bg-cyan-700">Siguiente &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div id="unit-2-practice" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Práctica: Completa la Pregunta/Respuesta</h3>
+                        
+                        <div class="space-y-4 max-w-md mx-auto">
+                            <div id="quiz-u2-item">
+                                <p id="quiz-u2-question" class="text-lg text-stone-700 mb-2 text-center"></p>
+                                <div class="flex space-x-2">
+                                    <input id="quiz-u2-input" type="text" class="flex-grow p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Escribe tu respuesta...">
+                                    <button id="quiz-u2-check" class="py-2 px-5 bg-cyan-600 text-white font-semibold rounded-lg shadow hover:bg-cyan-700">Verificar</button>
+                                </div>
+                                <p id="quiz-u2-feedback" class="mt-2 text-center font-medium h-6"></p>
+                            </div>
+                            <button id="quiz-u2-next" class="w-full py-2 px-5 bg-stone-600 text-white font-semibold rounded-lg shadow hover:bg-stone-700 hidden">Siguiente Pregunta</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-unit-3" class="page-content hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold text-stone-700 mb-2">Unidad 3: Possessions</h2>
+                    <p class="text-lg text-stone-600 mb-6">Temas: Regalos, objetos y descripciones de objetos.</p>
+
+                    <div class="flex justify-center space-x-2 mb-6 border-b border-stone-200 pb-4">
+                        <button class="unit-tab active py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-3-grammar">Gramática</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-3-vocab">Vocabulario</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-cyan-500 hover:text-white" data-target="unit-3-practice">Práctica</button>
+                    </div>
+
+                    <div id="unit-3-grammar" class="unit-content">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Gramática: Plurales y Demostrativos</h3>
+                        
+                        <h4 class="text-lg font-semibold text-stone-700 mt-4 mb-2">Sustantivos Plurales (Reglas)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max border border-stone-300 rounded-md">
+                                <thead class="bg-stone-100">
+                                    <tr>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Regla</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Ejemplo Singular</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Ejemplo Plural</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3">General</td>
+                                        <td class="p-3">book</td>
+                                        <td class="p-3">book<span class="font-bold text-cyan-600">s</span></td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200 bg-stone-50">
+                                        <td class="p-3">Termina en -s, -sh, -ch, -x, -z</td>
+                                        <td class="p-3">watch</td>
+                                        <td class="p-3">watch<span class="font-bold text-cyan-600">es</span></td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3">Consonante + y</td>
+                                        <td class="p-3">country</td>
+                                        <td class="p-3">countr<span class="font-bold text-cyan-600">ies</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-stone-700 mt-6 mb-2">Demostrativos</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max border border-stone-300 rounded-md">
+                                <thead class="bg-stone-100">
+                                    <tr>
+                                        <th class="p-3 text-left font-semibold text-stone-600"></th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Cerca (Here)</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Lejos (There)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3 font-semibold">Singular</td>
+                                        <td class="p-3">This (This is a book.)</td>
+                                        <td class="p-3">That (That is a camera.)</td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200 bg-stone-50">
+                                        <td class="p-3 font-semibold">Plural</td>
+                                        <td class="p-3">These (These are my keys.)</td>
+                                        <td class="p-3">Those (Those are new.)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div id="unit-3-vocab" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Vocabulario: Flashcards</h3>
+                        <p class="text-stone-600 mb-4 text-center">Haz clic en la tarjeta para ver la traducción.</p>
+                        
+                        <div class="relative w-full max-w-sm mx-auto h-48 perspective">
+                            <div id="flashcard-u3" class="flashcard relative w-full h-full">
+                                <div id="flashcard-u3-front" class="flashcard-face absolute w-full h-full bg-white border-2 border-cyan-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-stone-700"></span>
+                                </div>
+                                <div id="flashcard-u3-back" class="flashcard-face flashcard-back absolute w-full h-full bg-cyan-50 border-2 border-cyan-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-cyan-700"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between max-w-sm mx-auto mt-6">
+                            <button id="prev-u3" class="py-2 px-5 bg-stone-300 text-stone-700 font-semibold rounded-lg shadow hover:bg-stone-400">&larr; Anterior</button>
+                            <button id="next-u3" class="py-2 px-5 bg-cyan-600 text-white font-semibold rounded-lg shadow hover:bg-cyan-7auto-0">Siguiente &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div id="unit-3-practice" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-cyan-700 mb-4">Práctica: Elige la Palabra Correcta</h3>
+                        
+                        <div class="space-y-4 max-w-md mx-auto">
+                            <div id="quiz-u3-item">
+                                <p id="quiz-u3-question" class="text-lg text-stone-700 mb-2 text-center"></p>
+                                <div class="flex space-x-2">
+                                    <input id="quiz-u3-input" type="text" class="flex-grow p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Escribe tu respuesta...">
+                                    <button id="quiz-u3-check" class="py-2 px-5 bg-cyan-600 text-white font-semibold rounded-lg shadow hover:bg-cyan-700">Verificar</button>
+                                </div>
+                                <p id="quiz-u3-feedback" class="mt-2 text-center font-medium h-6"></p>
+                            </div>
+                            <button id="quiz-u3-next" class="w-full py-2 px-5 bg-stone-600 text-white font-semibold rounded-lg shadow hover:bg-stone-700 hidden">Siguiente Pregunta</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const mainTabs = document.querySelectorAll('.main-tab');
+            const mainPages = document.querySelectorAll('.page-content');
+            
+            mainTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    mainTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    mainPages.forEach(page => {
+                        page.classList.add('hidden');
+                    });
+                    
+                    const targetPage = document.getElementById(tab.dataset.target);
+                    if (targetPage) {
+                        targetPage.classList.remove('hidden');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.page-content').forEach(unitPage => {
+                const unitTabs = unitPage.querySelectorAll('.unit-tab');
+                const unitContents = unitPage.querySelectorAll('.unit-content');
+                
+                unitTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        unitTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        
+                        unitContents.forEach(content => {
+                            content.classList.add('hidden');
+                        });
+                        
+                        const targetContent = unitPage.querySelector(`#${tab.dataset.target}`);
+                        if (targetContent) {
+                            targetContent.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+
+            const vocab = {
+                u1: [
+                    { es: 'Nombre', en: 'First name' },
+                    { es: 'Apellido', en: 'Last name' },
+                    { es: 'Correo Electrónico', en: 'Email address' },
+                    { es: 'Amigo/a', en: 'Friend' },
+                    { es: 'Programa de TV', en: 'TV show' },
+                    { es: 'Deporte', en: 'Sport' },
+                    { es: 'Música', en: 'Music' },
+                ],
+                u2: [
+                    { es: 'País', en: 'Country' },
+                    { es: 'Nacionalidad', en: 'Nationality' },
+                    { es: 'Ciudad', en: 'City' },
+                    { es: 'Grande', en: 'Big' },
+                    { es: 'Pequeño', en: 'Small' },
+                    { es: 'Viejo', en: 'Old' },
+                    { es: 'Concurrido', en: 'Busy' },
+                    { es: 'Interesante', en: 'Interesting' },
+                    { es: 'Hermoso', en: 'Beautiful' },
+                ],
+                u3: [
+                    { es: 'Regalo', en: 'Gift' },
+                    { es: 'Objeto', en: 'Possession' },
+                    { es: 'Audífonos', en: 'Headphones' },
+                    { es: 'Cámara', en: 'Camera' },
+                    { es: 'Reloj', en: 'Watch' },
+                    { es: 'Llaves', en: 'Keys' },
+                    { es: 'Barato', en: 'Cheap' },
+                    { es: 'Caro', en: 'Expensive' },
+                    { es: 'Importante', en: 'Important' },
+                ]
+            };
+
+            const quizzes = {
+                u1: [
+                    { q: '___ you a student?', a: 'Are' },
+                    { q: "What's ___ favorite sport? (tu)", a: 'your' },
+                    { q: '___ he from Peru?', a: 'Is' },
+                    { q: '___ name is Maria. (de ella)', a: 'Her' },
+                    { q: 'They ___ friends.', a: 'are' },
+                ],
+                u2: [
+                    { q: '___ are you from?', a: 'Where' },
+                    { q: '___ is he? (persona)', a: 'Who' },
+                    { q: 'I am from Peru. I am ___', a: 'Peruvian' },
+                    { q: 'The city is old and ___ (hermosa)', a: 'beautiful' },
+                    { q: 'What\'s your city ___? (cómo es)', a: 'like' },
+                ],
+                u3: [
+                    { q: 'One book, two ___', a: 'books' },
+                    { q: 'One watch, two ___', a: 'watches' },
+                    { q: 'One country, two ___', a: 'countries' },
+                    { q: '___ is my phone. (cerca, singular)', a: 'This' },
+                    { q: '___ are my keys. (cerca, plural)', a: 'These' },
+                    { q: '___ is your car. (lejos, singular)', a: 'That' },
+                    { q: '___ are new shoes. (lejos, plural)', a: 'Those' },
+                ]
+            };
+            
+            function setupFlashcards(unit) {
+                let currentIndex = 0;
+                const data = vocab[unit];
+                const card = document.getElementById(`flashcard-${unit}`);
+                const front = document.getElementById(`flashcard-${unit}-front`).querySelector('span');
+                const back = document.getElementById(`flashcard-${unit}-back`).querySelector('span');
+                const nextBtn = document.getElementById(`next-${unit}`);
+                const prevBtn = document.getElementById(`prev-${unit}`);
+
+                function showCard(index) {
+                    card.classList.remove('is-flipped');
+                    setTimeout(() => {
+                        front.textContent = data[index].es;
+                        back.textContent = data[index].en;
+                    }, 200);
+                }
+
+                card.addEventListener('click', () => {
+                    card.classList.toggle('is-flipped');
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % data.length;
+                    showCard(currentIndex);
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + data.length) % data.length;
+                    showCard(currentIndex);
+                });
+
+                showCard(0);
+            }
+            
+            function setupQuiz(unit) {
+                let currentQuizIndex = 0;
+                const data = quizzes[unit];
+                const questionEl = document.getElementById(`quiz-${unit}-question`);
+                const inputEl = document.getElementById(`quiz-${unit}-input`);
+                const checkBtn = document.getElementById(`quiz-${unit}-check`);
+                const feedbackEl = document.getElementById(`quiz-${unit}-feedback`);
+                const nextBtn = document.getElementById(`quiz-${unit}-next`);
+
+                function showQuiz(index) {
+                    questionEl.textContent = data[index].q;
+                    inputEl.value = '';
+                    feedbackEl.textContent = '';
+                    inputEl.disabled = false;
+                    checkBtn.classList.remove('hidden');
+                    nextBtn.classList.add('hidden');
+                    feedbackEl.classList.remove('text-green-600', 'text-red-600');
+                }
+
+                checkBtn.addEventListener('click', () => {
+                    const userAnswer = inputEl.value.trim().toLowerCase();
+                    const correctAnswer = data[currentQuizIndex].a.toLowerCase();
+
+                    if (userAnswer === correctAnswer) {
+                        feedbackEl.textContent = '¡Correcto!';
+                        feedbackEl.classList.add('text-green-600');
+                        inputEl.disabled = true;
+                        checkBtn.classList.add('hidden');
+                        if (currentQuizIndex < data.length - 1) {
+                            nextBtn.classList.remove('hidden');
+                        } else {
+                            feedbackEl.textContent = '¡Completaste la práctica!';
+                        }
+                    } else {
+                        feedbackEl.textContent = `Incorrecto. Intenta de nuevo. (Respuesta: ${data[currentQuizIndex].a})`;
+                        feedbackEl.classList.add('text-red-600');
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentQuizIndex++;
+                    showQuiz(currentQuizIndex);
+                });
+
+                showQuiz(0);
+            }
+
+            setupFlashcards('u1');
+            setupQuiz('u1');
+            setupFlashcards('u2');
+            setupQuiz('u2');
+            setupFlashcards('u3');
+            setupQuiz('u3');
+
+            const ctx = document.getElementById('unitChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Unidad 1: Introductions', 'Unidad 2: Countries', 'Unidad 3: Possessions'],
+                    datasets: [{
+                        label: 'Conceptos Clave (Gramática + Vocab)',
+                        data: [
+                            vocab.u1.length + 2,
+                            vocab.u2.length + 2,
+                            vocab.u3.length + 2
+                        ],
+                        backgroundColor: [
+                            'rgba(6, 182, 212, 0.6)',
+                            'rgba(8, 145, 178, 0.6)',
+                            'rgba(20, 83, 100, 0.6)'
+                        ],
+                        borderColor: [
+                            '#06B6D4',
+                            '#0891B2',
+                            '#145364'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#44403C'
+                            },
+                            grid: {
+                                color: '#F5F5F4'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#44403C'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#1E293B',
+                            titleFont: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 12
+                            },
+                            padding: 10,
+                            cornerRadius: 4
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

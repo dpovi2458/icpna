@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Resumen interactivo — Basic 10 (2 hojas)</title>
+<style>
+  :root{
+    --bg:#fbfbff; --card:#ffffff; --accent:#2b6cb0; --muted:#666;
+    --print-margin:20mm;
+  }
+  body{font-family:Inter, system-ui, -apple-system, "Helvetica Neue", Arial; background:var(--bg); color:#111; margin:0; padding:24px;}
+  header{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+  header h1{font-size:20px;margin:0}
+  header p{margin:0;color:var(--muted);font-size:13px}
+  nav{margin-bottom:14px}
+  .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block}
+  .container{display:grid;grid-template-columns:1fr;gap:18px;max-width:980px;margin:0 auto}
+  .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(15,20,30,0.06)}
+  .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+  .accordion .item{border-top:1px dashed #eee;padding:10px 0}
+  .accordion button{width:100%;text-align:left;padding:8px 0;border:0;background:none;font-size:15px;font-weight:700;cursor:pointer}
+  .accordion .content{max-height:0;overflow:hidden;transition:all .28s ease}
+  .accordion .open .content{max-height:600px;margin-top:8px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .flashcard{height:120px;display:flex;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;user-select:none}
+  .flashcard.front{background:linear-gradient(180deg, #fff,#f6f9ff);border:1px solid #e6eef9}
+  .flashcard.back{background:#f7fafc;border:1px solid #e8eef6;transform:rotateY(180deg)}
+  .flashcard-wrap{perspective:1000px}
+  .flashcard-inner{transition:transform .5s;transform-style:preserve-3d;position:relative;height:100%}
+  .flashcard-inner.flipped{transform:rotateY(180deg)}
+  .flashcard-inner > div{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;padding:10px}
+  .quiz .q{margin-bottom:12px}
+  .small{font-size:13px;color:var(--muted)}
+  footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+  /* print two-page */
+  @media print{
+    body{padding:0}
+    .container{max-width:100%;padding:0}
+    .page{page-break-after:always;padding:var(--print-margin)}
+    nav, header .actions, .btn, footer{display:none}
+  }
+  /* responsive */
+  @media (max-width:720px){
+    .two-col{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Resumen interactivo — Basic 10 (Units 4–6)</h1>
+    <p class="small">2 hojas imprimibles · interactivo: acordeones, flashcards y quiz · basado en Basic-10.docx. :contentReference[oaicite:1]{index=1}</p>
+  </div>
+  <div style="margin-left:auto;" class="actions">
+    <a class="btn" onclick="window.print()">Imprimir / Guardar PDF</a>
+  </div>
+</header>
+
+<main class="container">
+  <!-- PAGE 1 -->
+  <section class="card page" id="page1">
+    <div class="meta">Página 1 — Units 4 (Trends) y 5 (Out & About)</div>
+
+    <!-- Overview -->
+    <div class="card" style="margin-bottom:12px">
+      <strong>Visión rápida</strong>
+      <p class="small" style="margin-top:8px">
+        Unit 4: <em>Trends</em> — estadísticas y tendencias, vocabulario sobre moda y estilo personal, dar consejos (could/should/ought to).  
+        Unit 5: <em>Out & About</em> — encargos, hacer citas, describir barrios y transporte. (Páginas de referencia: unidades 4–6 en el libro).
+      </p>
+    </div>
+
+    <!-- Accordion summaries -->
+    <div class="card accordion" id="accordion1" aria-hidden="false">
+      <div class="item" id="it1">
+        <button onclick="toggleItem('it1')">Unit 4 — Lifestyle trends (resumen)</button>
+        <div class="content">
+          <p><strong>Puntos clave:</strong> interpretar estadísticas (increase, decrease, nearly, over), expresar desacuerdo con suavidad o fuerza, vocabulario sobre tendencias sociales (e.g., boomerang kids), y habilidades de listening para inferir información.</p>
+          <ul>
+            <li>Expresiones para discrepar: "I know what you're saying, but...", "Sorry, but I disagree."</li>
+            <li>Consejos: could / should / ought to / had better (diferencias de fuerza).</li>
+            <li>Actividad típica: interpretar gráficos de cambios en graduados universitarios y movimiento a la casa de los padres.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="item" id="it2">
+        <button onclick="toggleItem('it2')">Unit 4 — Fashion trends (resumen)</button>
+        <div class="content">
+          <p>Vocabulario: casual, comfortable, retro, stylish, dramatic, flashy, plain. Actividades: <em>trendspotting</em>, discutir estilos y dar consejos de imagen.</p>
+          <p class="small">Ejercicio práctico: diseñar un outfit, justificar elección y dar retroalimentación.</p>
+        </div>
+      </div>
+
+      <div class="item" id="it3">
+        <button onclick="toggleItem('it3')">Unit 5 — Running errands (resumen)</button>
+        <div class="content">
+          <p>Habilidades prácticas: vocabulario para tareas del hogar (do the dishes, vacuum, sweep), hacer y reprogramar citas por teléfono, entender respuestas naturales.</p>
+          <p class="small">Pronunciación destacada: formas reducidas de "could you" y "would you".</p>
+        </div>
+      </div>
+
+      <div class="item" id="it4">
+        <button onclick="toggleItem('it4')">Unit 5 — My neighborhood (resumen)</button>
+        <div class="content">
+          <p>Describir si un barrio es <em>walkable</em>, vocabulario de transporte y rutas, comparar áreas (ej.: Hongdae, Inwood, Fes el Bali) y escribir descripciones del vecindario.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flashcards -->
+    <div style="margin-top:12px" class="card">
+      <strong>Flashcards rápidas (haz click para voltear)</strong>
+      <div class="two-col" style="margin-top:10px">
+        <div class="flashcard-wrap" onclick="flip(0)">
+          <div class="flashcard-inner" id="fc0">
+            <div class="flashcard front">boomerang kid — ¿qué significa?</div>
+            <div class="flashcard back">Adulto joven que vuelve a vivir con sus padres después de la universidad.</div>
+          </div>
+        </div>
+        <div class="flashcard-wrap" onclick="flip(1)">
+          <div class="flashcard-inner" id="fc1">
+            <div class="flashcard front">had better — uso</div>
+            <div class="flashcard back">Consejo fuerte; implica posible consecuencia negativa si no se sigue.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini interactive checklist -->
+    <div class="card" style="margin-top:12px">
+      <strong>Checklist de estudio (marca lo completado)</strong>
+      <p class="small">Revisa estos puntos para Unit 4–5:</p>
+      <label><input type="checkbox" id="c1"> Entender las expresiones de cantidad (some, most, half)</label><br>
+      <label><input type="checkbox" id="c2"> Practicar conflictos y desacuerdos</label><br>
+      <label><input type="checkbox" id="c3"> Hacer una llamada simulada para agendar una cita</label><br>
+      <button onclick="showProgress()" class="btn" style="margin-top:8px">Ver progreso</button>
+      <p id="prog" class="small" style="margin-top:8px"></p>
+    </div>
+
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="card page" id="page2">
+    <div class="meta">Página 2 — Unit 6 (Goals) + ejercicios</div>
+
+    <div class="card">
+      <strong>Unit 6 — Goals (resumen)</strong>
+      <p class="small" style="margin-top:8px">
+        Temas: aplicar a la universidad, escribir perfiles personales, planes y decisiones (be going to vs will), preparación para entrevistas y ferias de trabajo, y ejercicio sobre jóvenes emprendedores.
+      </p>
+      <ul>
+        <li>Vocabulario clave: apply, competition, recommendation, internship.</li>
+        <li>Gramática: <em>be going to</em> para planes; <em>will</em> para predicciones espontáneas.</li>
+      </ul>
+    </div>
+
+    <!-- Quiz -->
+    <div class="card quiz" style="margin-top:12px">
+      <strong>Mini-quiz (3 preguntas)</strong>
+      <div class="q">
+        <p>1) ¿Qué usas para dar un consejo suave? <br>
+          <label><input type="radio" name="q1" value="a"> had better</label><br>
+          <label><input type="radio" name="q1" value="b"> could</label><br>
+          <label><input type="radio" name="q1" value="c"> must</label>
+        </p>
+      </div>
+      <div class="q">
+        <p>2) "I'm going to study law." — ¿qué expresa? <br>
+          <label><input type="radio" name="q2" value="a"> Decisión espontánea</label><br>
+          <label><input type="radio" name="q2" value="b"> Plan ya decidido</label><br>
+          <label><input type="radio" name="q2" value="c"> Predicción basada en opinión</label>
+        </p>
+      </div>
+      <div class="q">
+        <p>3) ¿Qué palabra describe un barrio fácil para caminar? <br>
+          <label><input type="radio" name="q3" value="a"> walkable</label><br>
+          <label><input type="radio" name="q3" value="b"> drivable</label><br>
+          <label><input type="radio" name="q3" value="c"> transitless</label>
+        </p>
+      </div>
+      <button onclick="gradeQuiz()" class="btn" style="margin-top:8px">Corregir quiz</button>
+      <p id="result" class="small" style="margin-top:8px"></p>
+    </div>
+
+    <!-- Writing prompt + quick template -->
+    <div class="card" style="margin-top:12px">
+      <strong>Actividad: Escribe un perfil personal (100–120 palabras)</strong>
+      <p class="small">Usa este esquema: Nombre • Estudio/Trabajo • Habilidades • Experiencia • Planes futuros (be going to / will).</p>
+      <textarea id="profile" style="width:100%;min-height:100px;border-radius:8px;padding:8px;border:1px solid #e6eef9;margin-top:8px" placeholder="Escribe aquí tu perfil..."></textarea>
+      <button class="btn" style="margin-top:8px" onclick="suggestProfile()">Sugerir mejora rápida</button>
+      <p id="profileHint" class="small" style="margin-top:8px"></p>
+    </div>
+
+    <footer>
+      <div class="small">Generado a partir de <em>Basic 10</em> — contenido resumido para estudio. :contentReference[oaicite:2]{index=2}</div>
+    </footer>
+  </section>
+</main>
+
+<script>
+  // Accordion toggles
+  function toggleItem(id){
+    const itm = document.getElementById(id);
+    if(!itm) return;
+    itm.classList.toggle('open');
+    // animate content is handled by css max-height
+  }
+
+  // Flashcards flip
+  function flip(n){
+    const el = document.getElementById('fc'+n);
+    if(!el) return;
+    el.classList.toggle('flipped');
+  }
+
+  // Progress button
+  function showProgress(){
+    const checks = ['c1','c2','c3'];
+    const done = checks.filter(id => document.getElementById(id).checked).length;
+    const total = checks.length;
+    const pct = Math.round(100 * done / total);
+    document.getElementById('prog').innerText = `Progreso: ${done}/${total} completados (${pct}%).`;
+  }
+
+  // Quiz grader
+  function gradeQuiz(){
+    const answers = { q1:'b', q2:'b', q3:'a' };
+    let score = 0, total = 3;
+    for(let i=1;i<=3;i++){
+      const qs = document.getElementsByName('q'+i);
+      let chosen = null;
+      for(const el of qs) if(el.checked) chosen = el.value;
+      if(chosen === answers['q'+i]) score++;
+    }
+    const pct = Math.round(score/total*100);
+    const res = document.getElementById('result');
+    res.innerHTML = `Has acertado ${score}/${total} (${pct}%). <span style="color:${score===3?'green':'#b04d2b'}">${score===3?'¡Excelente!':''}</span>`;
+  }
+
+  // Quick profile suggestion (very small heuristic)
+  function suggestProfile(){
+    const text = document.getElementById('profile').value.trim();
+    if(!text){ document.getElementById('profileHint').innerText = 'Escribe tu perfil primero (100–120 palabras recomendadas).'; return; }
+    // simple tips
+    const words = text.split(/\s+/).length;
+    let hint = `Longitud: ${words} palabras. `;
+    if(words < 90) hint += 'Intenta añadir más detalles concretos (experiencia o planes).';
+    else if(words > 140) hint += 'Un poco largo — reduce a lo esencial (100–120 palabras).';
+    else hint += 'Buen tamaño. Revisa uso de "be going to" para planes y añade una línea final con objetivo profesional.';
+    document.getElementById('profileHint').innerText = hint;
+  }
+
+  // initialize first accordion open
+  document.getElementById('it1').classList.add('open');
+</script>
+</body>
+</html>

@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Interactivo: Basic 4 (Units 10-12)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-2xl shadow-2xl p-8 mb-8">
+            <h1 class="text-4xl font-bold mb-2">📚 World Link Basic 4</h1>
+            <p class="text-xl opacity-90">Resumen Interactivo Completo - Units 10, 11, 12</p>
+            <p class="text-sm mt-2 opacity-75">Developing English Fluency | ICPNA Track 2</p>
+        </header>
+
+        <!-- Main Navigation -->
+        <nav class="bg-white rounded-xl shadow-lg mb-6 overflow-hidden">
+            <div class="flex flex-wrap">
+                <button onclick="showMainTab(0)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-purple-50 border-b-4 border-transparent transition-all">
+                    📊 General
+                </button>
+                <button onclick="showMainTab(1)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-purple-50 border-b-4 border-transparent transition-all">
+                    🏠 Unit 10
+                </button>
+                <button onclick="showMainTab(2)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-purple-50 border-b-4 border-transparent transition-all">
+                    👕 Unit 11
+                </button>
+                <button onclick="showMainTab(3)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-purple-50 border-b-4 border-transparent transition-all">
+                    💼 Unit 12
+                </button>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="main-content">
+            <!-- TAB 0: GENERAL OVERVIEW -->
+            <div class="tab-pane">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-purple-700 mb-6">Descripción General del Curso</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-purple-700 mb-3">🎯 Objetivos de Aprendizaje</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Describir lugares y habitaciones usando <code class="bg-white px-2 py-1 rounded">there is/are</code></span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Comprar ropa y hablar de precios</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Expresar deseos y necesidades con <code class="bg-white px-2 py-1 rounded">want to/have to</code></span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Preguntar y responder sobre trabajos</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Describir habilidades con <code class="bg-white px-2 py-1 rounded">can/can't</code></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-pink-700 mb-3">📈 Distribución de Conceptos</h3>
+                            <canvas id="conceptChart" class="mt-4"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-3">💡 Resumen por Unidad</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-purple-600">Unit 10: HOME</h4>
+                                <p class="text-gray-700">Vocabulario de habitaciones, colores, gramática de <code>there is/are</code> y <code>very/too</code></p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-pink-600">Unit 11: CLOTHING</h4>
+                                <p class="text-gray-700">Ropa, accesorios, shopping phrases, sustantivos contables/incontables</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-green-600">Unit 12: JOBS</h4>
+                                <p class="text-gray-700">Profesiones, habilidades con <code>can/can't</code>, metas laborales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 1: UNIT 10 - HOME -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-purple-700 mb-2">🏠 Unit 10: HOME</h2>
+                    <p class="text-gray-600 mb-6">Small Spaces, Small Ideas</p>
+
+                    <!-- Sub-tabs for Unit 10 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(0, 0)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(0, 1)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(0, 2)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 border-b-4 border-transparent">
+                            🎯 Práctica
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 10 -->
+                    <div class="sub-content-0">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-purple-600 mb-4">Vocabulario: Rooms & Items</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🏠 Habitaciones (Rooms)</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-purple-100 p-3 rounded-lg text-center hover:bg-purple-200 transition cursor-pointer">
+                                        <span class="text-2xl">🛋️</span>
+                                        <p class="font-semibold">Living room</p>
+                                        <p class="text-xs text-gray-600">Sala de estar</p>
+                                    </div>
+                                    <div class="bg-purple-100 p-3 rounded-lg text-center hover:bg-purple-200 transition cursor-pointer">
+                                        <span class="text-2xl">🍽️</span>
+                                        <p class="font-semibold">Dining room</p>
+                                        <p class="text-xs text-gray-600">Comedor</p>
+                                    </div>
+                                    <div class="bg-purple-100 p-3 rounded-lg text-center hover:bg-purple-200 transition cursor-pointer">
+                                        <span class="text-2xl">👨‍🍳</span>
+                                        <p class="font-semibold">Kitchen</p>
+                                        <p class="text-xs text-gray-600">Cocina</p>
+                                    </div>
+                                    <div class="bg-purple-100 p-3 rounded-lg text-center hover:bg-purple-200 transition cursor-pointer">
+                                        <span class="text-2xl">🛏️</span>
+                                        <p class="font-semibold">Bedroom</p>
+                                        <p class="text-xs text-gray-600">Dormitorio</p>
+                                    </div>
+                                    <div class="bg-purple-100 p-3 rounded-lg text-center hover:bg-purple-200 transition cursor-pointer">
+                                        <span class="text-2xl">🚿</span>
+                                        <p class="font-semibold">Bathroom</p>
+                                        <p class="text-xs text-gray-600">Baño</p>
+                                    </div>
+                                    <div class="bg-purple-100 p-3 rounded-lg text-center hover:bg-purple-200 transition cursor-pointer">
+                                        <span class="text-2xl">🏡</span>
+                                        <p class="font-semibold">Balcony</p>
+                                        <p class="text-xs text-gray-600">Balcón</p>
+                                    </div>
+                                    <div class="bg-purple-100 p-3 rounded-lg text-center hover:bg-purple-200 transition cursor-pointer">
+                                        <span class="text-2xl">🚗</span>
+                                        <p class="font-semibold">Garage</p>
+                                        <p class="text-xs text-gray-600">Garaje</p>
+                                    </div>
+                                    <div class="bg-purple-100 p-3 rounded-lg text-center hover:bg-purple-200 transition cursor-pointer">
+                                        <span class="text-2xl">🪜</span>
+                                        <p class="font-semibold">Stairs</p>
+                                        <p class="text-xs text-gray-600">Escaleras</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🪑 Objetos (Items)</h4>
+                                <div class="grid grid-cols-3 md:grid-cols-5 gap-2 text-sm">
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">sofa</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">chair</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">table</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">bed</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">lamp</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">rug</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">mirror</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">window</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">closet</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">air conditioner</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">refrigerator</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">stove</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">sink</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">shower</span>
+                                    <span class="bg-indigo-50 px-3 py-2 rounded">toilet</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🎨 Colores (Colors)</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-4 py-2 rounded-full text-white font-semibold" style="background: red;">Red</span>
+                                    <span class="px-4 py-2 rounded-full font-semibold" style="background: orange;">Orange</span>
+                                    <span class="px-4 py-2 rounded-full font-semibold" style="background: yellow;">Yellow</span>
+                                    <span class="px-4 py-2 rounded-full text-white font-semibold" style="background: green;">Green</span>
+                                    <span class="px-4 py-2 rounded-full text-white font-semibold" style="background: blue;">Blue</span>
+                                    <span class="px-4 py-2 rounded-full text-white font-semibold" style="background: purple;">Purple</span>
+                                    <span class="px-4 py-2 rounded-full font-semibold" style="background: pink;">Pink</span>
+                                    <span class="px-4 py-2 rounded-full text-white font-semibold" style="background: brown;">Brown</span>
+                                    <span class="px-4 py-2 rounded-full text-white font-semibold" style="background: black;">Black</span>
+                                    <span class="px-4 py-2 rounded-full font-semibold border-2" style="background: white;">White</span>
+                                    <span class="px-4 py-2 rounded-full text-white font-semibold" style="background: gray;">Gray</span>
+                                </div>
+                            </div>
+
+                            <!-- Flashcards -->
+                            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-purple-700 mb-4">🎴 Flashcards - Practica el vocabulario</h4>
+                                <div id="flashcard-10" class="bg-white rounded-lg shadow-lg p-8 min-h-[200px] flex items-center justify-center cursor-pointer hover:shadow-xl transition">
+                                    <div class="text-center">
+                                        <p class="text-3xl mb-2" id="flashcard-emoji-10">🛋️</p>
+                                        <p class="text-2xl font-bold" id="flashcard-word-10">Living room</p>
+                                        <p class="text-gray-500 mt-2 hidden" id="flashcard-translation-10">Sala de estar</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between mt-4">
+                                    <button onclick="prevFlashcard(10)" class="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600">← Anterior</button>
+                                    <button onclick="flipFlashcard(10)" class="bg-indigo-500 text-white px-6 py-2 rounded-lg hover:bg-indigo-600">🔄 Voltear</button>
+                                    <button onclick="nextFlashcard(10)" class="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600">Siguiente →</button>
+                                </div>
+                                <p class="text-center mt-3 text-gray-600"><span id="flashcard-count-10">1</span> / 10</p>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-purple-600 mb-4">Gramática</h3>
+                            
+                            <!-- There is / There are -->
+                            <div class="bg-purple-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-purple-700 mb-3">There is / There are</h4>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-purple-200">
+                                                <th class="border border-purple-300 p-3">Forma</th>
+                                                <th class="border border-purple-300 p-3">Ejemplo</th>
+                                                <th class="border border-purple-300 p-3">Traducción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-purple-300 p-3 font-semibold">Afirmativo (singular)</td>
+                                                <td class="border border-purple-300 p-3"><code>There is a rug in my bedroom.</code></td>
+                                                <td class="border border-purple-300 p-3">Hay una alfombra en mi habitación.</td>
+                                            </tr>
+                                            <tr class="bg-purple-50">
+                                                <td class="border border-purple-300 p-3 font-semibold">Negativo (singular)</td>
+                                                <td class="border border-purple-300 p-3"><code>There isn't an elevator.</code></td>
+                                                <td class="border border-purple-300 p-3">No hay un elevador.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-purple-300 p-3 font-semibold">Afirmativo (plural)</td>
+                                                <td class="border border-purple-300 p-3"><code>There are two windows.</code></td>
+                                                <td class="border border-purple-300 p-3">Hay dos ventanas.</td>
+                                            </tr>
+                                            <tr class="bg-purple-50">
+                                                <td class="border border-purple-300 p-3 font-semibold">Negativo (plural)</td>
+                                                <td class="border border-purple-300 p-3"><code>There aren't any chairs.</code></td>
+                                                <td class="border border-purple-300 p-3">No hay sillas.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-purple-300 p-3 font-semibold">Pregunta (singular)</td>
+                                                <td class="border border-purple-300 p-3"><code>Is there a balcony?</code></td>
+                                                <td class="border border-purple-300 p-3">¿Hay un balcón?</td>
+                                            </tr>
+                                            <tr class="bg-purple-50">
+                                                <td class="border border-purple-300 p-3 font-semibold">Pregunta (plural)</td>
+                                                <td class="border border-purple-300 p-3"><code>Are there any windows?</code></td>
+                                                <td class="border border-purple-300 p-3">¿Hay ventanas?</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-purple-300 p-3 font-semibold">How many...</td>
+                                                <td class="border border-purple-300 p-3"><code>How many rooms are there?</code></td>
+                                                <td class="border border-purple-300 p-3">¿Cuántas habitaciones hay?</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Very vs Too -->
+                            <div class="bg-orange-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-orange-700 mb-3">Very vs Too</h4>
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                                        <h5 class="font-bold text-blue-700 mb-2">VERY (intensidad)</h5>
+                                        <p class="text-sm text-gray-600 mb-2">Expresa que algo es intenso (puede ser positivo o negativo)</p>
+                                        <div class="space-y-2">
+                                            <p class="bg-blue-50 p-2 rounded"><code>This room is very dark.</code></p>
+                                            <p class="bg-blue-50 p-2 rounded"><code>They have a very big house.</code></p>
+                                            <p class="bg-blue-50 p-2 rounded"><code>He's very nice.</code></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-red-500">
+                                        <h5 class="font-bold text-red-700 mb-2">TOO (excesivo)</h5>
+                                        <p class="text-sm text-gray-600 mb-2">Expresa que algo es excesivo (siempre negativo)</p>
+                                        <div class="space-y-2">
+                                            <p class="bg-red-50 p-2 rounded"><code>He talks too fast, I can't understand.</code></p>
+                                            <p class="bg-red-50 p-2 rounded"><code>I'm too tired to watch TV.</code></p>
+                                            <p class="bg-red-50 p-2 rounded"><code>It's too small for four people.</code></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Showing Surprise -->
+                            <div class="bg-yellow-50 p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-yellow-700 mb-3">💬 Showing Surprise (Mostrar sorpresa)</h4>
+                                <p class="mb-3 text-gray-700">Usa entonación ascendente (↗️) para mostrar sorpresa:</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-yellow-200 px-4 py-2 rounded-full font-semibold">Really? ↗️</span>
+                                    <span class="bg-yellow-200 px-4 py-2 rounded-full font-semibold">Are you serious? ↗️</span>
+                                    <span class="bg-yellow-200 px-4 py-2 rounded-full font-semibold">For real? ↗️</span>
+                                    <span class="bg-yellow-200 px-4 py-2 rounded-full font-semibold">No way! ↘️</span>
+                                    <span class="bg-yellow-200 px-4 py-2 rounded-full font-semibold">You're kidding! ↘️</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Práctica -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-purple-600 mb-4">🎯 Práctica - Quiz</h3>
+                            
+                            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-6 rounded-lg">
+                                <div id="quiz-10-question" class="mb-6">
+                                    <p class="text-lg font-semibold mb-4">Pregunta 1 de 5:</p>
+                                    <p class="text-xl mb-4" id="question-text-10">¿Cómo se dice "There is a sofa in the living room"?</p>
+                                    <div class="space-y-3" id="quiz-options-10">
+                                        <button class="quiz-option w-full text-left p-4 bg-white rounded-lg hover:bg-purple-100 border-2 border-transparent hover:border-purple-500 transition">
+                                            A) Hay un sofá en la sala de estar
+                                        </button>
+                                        <button class="quiz-option w-full text-left p-4 bg-white rounded-lg hover:bg-purple-100 border-2 border-transparent hover:border-purple-500 transition">
+                                            B) Hay sofás en la sala de estar
+                                        </button>
+                                        <button class="quiz-option w-full text-left p-4 bg-white rounded-lg hover:bg-purple-100 border-2 border-transparent hover:border-purple-500 transition">
+                                            C) No hay sofá en la sala
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div id="quiz-10-feedback" class="hidden mb-4 p-4 rounded-lg"></div>
+                                
+                                <button onclick="nextQuestion(10)" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-semibold">
+                                    Siguiente Pregunta →
+                                </button>
+                                
+                                <p class="mt-4 text-gray-600">Puntaje: <span id="score-10" class="font-bold text-purple-600">0</span> / 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: UNIT 11 - CLOTHING -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-pink-700 mb-2">👕 Unit 11: CLOTHING</h2>
+                    <p class="text-gray-600 mb-6">Street Style & Shopping</p>
+
+                    <!-- Sub-tabs for Unit 11 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(1, 0)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-pink-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(1, 1)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-pink-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(1, 2)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-pink-600 border-b-4 border-transparent">
+                            🎯 Práctica
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 11 -->
+                    <div class="sub-content-1">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-pink-600 mb-4">Vocabulario: Clothing & Accessories</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">👚 Ropa (Clothing)</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">👕</span>
+                                        <p class="font-semibold">T-shirt</p>
+                                        <p class="text-xs text-gray-600">Camiseta</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">👖</span>
+                                        <p class="font-semibold">Jeans</p>
+                                        <p class="text-xs text-gray-600">Pantalones</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">👗</span>
+                                        <p class="font-semibold">Dress</p>
+                                        <p class="text-xs text-gray-600">Vestido</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">👔</span>
+                                        <p class="font-semibold">Shirt</p>
+                                        <p class="text-xs text-gray-600">Camisa</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">🧥</span>
+                                        <p class="font-semibold">Jacket</p>
+                                        <p class="text-xs text-gray-600">Chaqueta</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">👞</span>
+                                        <p class="font-semibold">Shoes</p>
+                                        <p class="text-xs text-gray-600">Zapatos</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">👟</span>
+                                        <p class="font-semibold">Sneakers</p>
+                                        <p class="text-xs text-gray-600">Zapatillas</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">🥾</span>
+                                        <p class="font-semibold">Boots</p>
+                                        <p class="text-xs text-gray-600">Botas</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">🧢</span>
+                                        <p class="font-semibold">Hat</p>
+                                        <p class="text-xs text-gray-600">Gorra</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">🧣</span>
+                                        <p class="font-semibold">Scarf</p>
+                                        <p class="text-xs text-gray-600">Bufanda</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">🧤</span>
+                                        <p class="font-semibold">Gloves</p>
+                                        <p class="text-xs text-gray-600">Guantes</p>
+                                    </div>
+                                    <div class="bg-pink-100 p-3 rounded-lg text-center hover:bg-pink-200 transition">
+                                        <span class="text-2xl">🩳</span>
+                                        <p class="font-semibold">Shorts</p>
+                                        <p class="text-xs text-gray-600">Pantalones cortos</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">📏 Adjetivos Descriptivos</h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-rose-50 p-4 rounded-lg">
+                                        <ul class="space-y-2">
+                                            <li class="flex justify-between"><span class="font-semibold">Baggy / Loose</span> <span class="text-gray-600">↔ Fitted / Tight</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">Casual</span> <span class="text-gray-600">↔ Dressy / Formal</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">Long</span> <span class="text-gray-600">↔ Short</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-rose-50 p-4 rounded-lg">
+                                        <ul class="space-y-2">
+                                            <li class="flex justify-between"><span class="font-semibold">Heavy</span> <span class="text-gray-600">↔ Light</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">Put on</span> <span class="text-gray-600">↔ Take off</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">Bright</span> <span class="text-gray-600">↔ Dark</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-pink-50 to-rose-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-pink-700 mb-3">💬 Shopping Phrases</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <p class="font-semibold text-pink-600">Preguntar precio:</p>
+                                        <p><code>How much is it?</code></p>
+                                        <p><code>How much are they?</code></p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <p class="font-semibold text-pink-600">Responder:</p>
+                                        <p><code>I'll take it.</code> - Lo llevo</p>
+                                        <p><code>I'll think about it.</code> - Lo pensaré</p>
+                                        <p><code>I'm just looking.</code> - Solo estoy mirando</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-pink-600 mb-4">Gramática</h3>
+                            
+                            <!-- Want to / Have to -->
+                            <div class="bg-pink-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-pink-700 mb-3">Want to / Have to</h4>
+                                
+                                <div class="overflow-x-auto mb-4">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-pink-200">
+                                                <th class="border border-pink-300 p-3">Estructura</th>
+                                                <th class="border border-pink-300 p-3">Uso</th>
+                                                <th class="border border-pink-300 p-3">Ejemplo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-pink-300 p-3"><code>Want + noun</code></td>
+                                                <td class="border border-pink-300 p-3">Desear un objeto</td>
+                                                <td class="border border-pink-300 p-3">I want these boots.</td>
+                                            </tr>
+                                            <tr class="bg-pink-50">
+                                                <td class="border border-pink-300 p-3"><code>Want to + verb</code></td>
+                                                <td class="border border-pink-300 p-3">Desear hacer algo</td>
+                                                <td class="border border-pink-300 p-3">I want to buy these boots.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-pink-300 p-3"><code>Have + noun</code></td>
+                                                <td class="border border-pink-300 p-3">Poseer un objeto</td>
+                                                <td class="border border-pink-300 p-3">I have a coat.</td>
+                                            </tr>
+                                            <tr class="bg-pink-50">
+                                                <td class="border border-pink-300 p-3"><code>Have to + verb</code></td>
+                                                <td class="border border-pink-300 p-3">Necesidad/obligación</td>
+                                                <td class="border border-pink-300 p-3">I have to buy a coat. (No tengo uno)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Count vs Noncount Nouns -->
+                            <div class="bg-rose-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-rose-700 mb-3">Count & Noncount Nouns</h4>
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                                        <h5 class="font-bold text-green-700 mb-2">COUNT NOUNS (Contables)</h5>
+                                        <p class="text-sm text-gray-600 mb-2">Pueden ser singular o plural</p>
+                                        <div class="space-y-2 text-sm">
+                                            <p class="bg-green-50 p-2 rounded"><code>This shirt is expensive.</code></p>
+                                            <p class="bg-green-50 p-2 rounded"><code>These shirts are expensive.</code></p>
+                                            <p class="bg-green-50 p-2 rounded"><code>I need (some) new winter boots.</code></p>
+                                            <p class="bg-green-50 p-2 rounded"><code>I have a pair of sunglasses.</code></p>
+                                            <p class="bg-green-50 p-2 rounded"><code>Ten pairs of shoes.</code></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-orange-500">
+                                        <h5 class="font-bold text-orange-700 mb-2">NONCOUNT NOUNS (Incontables)</h5>
+                                        <p class="text-sm text-gray-600 mb-2">Siempre singular, no usan "a/an"</p>
+                                        <div class="space-y-2 text-sm">
+                                            <p class="bg-orange-50 p-2 rounded"><code>This clothing is expensive.</code></p>
+                                            <p class="bg-orange-50 p-2 rounded"><code>I want to save money.</code> ❌ a money</p>
+                                            <p class="bg-orange-50 p-2 rounded"><code>I need (some) luggage.</code></p>
+                                            <p class="bg-orange-50 p-2 rounded"><code>A piece of jewelry.</code></p>
+                                            <p class="bg-orange-50 p-2 rounded"><code>Two pieces of jewelry.</code></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 bg-yellow-100 p-4 rounded-lg">
+                                    <p class="font-semibold text-yellow-800">Comunes incontables:</p>
+                                    <p class="text-sm">clothing, jewelry, money, luggage, furniture, bread, rice, fruit, water, coffee, information</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Práctica -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-pink-600 mb-4">🎯 Práctica - Quiz Unit 11</h3>
+                            <div class="bg-gradient-to-r from-pink-50 to-rose-50 p-6 rounded-lg">
+                                <p class="text-center text-gray-600">Quiz interactivo en construcción...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: UNIT 12 - JOBS -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-green-700 mb-2">💼 Unit 12: JOBS</h2>
+                    <p class="text-gray-600 mb-6">Career Day & Work Goals</p>
+
+                    <!-- Sub-tabs for Unit 12 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(2, 0)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-green-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(2, 1)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-green-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(2, 2)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-green-600 border-b-4 border-transparent">
+                            🎯 Práctica
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 12 -->
+                    <div class="sub-content-2">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-green-600 mb-4">Vocabulario: Jobs & Careers</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">💼 Profesiones (Jobs)</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">👨‍⚕️</span>
+                                        <p class="font-semibold">Doctor</p>
+                                        <p class="text-xs text-gray-600">Médico</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">👨‍💻</span>
+                                        <p class="font-semibold">Programmer</p>
+                                        <p class="text-xs text-gray-600">Programador</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">⚖️</span>
+                                        <p class="font-semibold">Lawyer</p>
+                                        <p class="text-xs text-gray-600">Abogado</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">👩‍⚕️</span>
+                                        <p class="font-semibold">Nurse</p>
+                                        <p class="text-xs text-gray-600">Enfermera</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">👨‍💼</span>
+                                        <p class="font-semibold">Businessperson</p>
+                                        <p class="text-xs text-gray-600">Empresario</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">👮</span>
+                                        <p class="font-semibold">Police officer</p>
+                                        <p class="text-xs text-gray-600">Policía</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">💇</span>
+                                        <p class="font-semibold">Hairstylist</p>
+                                        <p class="text-xs text-gray-600">Estilista</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">🎨</span>
+                                        <p class="font-semibold">Web designer</p>
+                                        <p class="text-xs text-gray-600">Diseñador web</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">📨</span>
+                                        <p class="font-semibold">Delivery person</p>
+                                        <p class="text-xs text-gray-600">Repartidor</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">✈️</span>
+                                        <p class="font-semibold">Flight attendant</p>
+                                        <p class="text-xs text-gray-600">Azafata</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">💁</span>
+                                        <p class="font-semibold">Receptionist</p>
+                                        <p class="text-xs text-gray-600">Recepcionista</p>
+                                    </div>
+                                    <div class="bg-green-100 p-3 rounded-lg text-center hover:bg-green-200 transition">
+                                        <span class="text-2xl">📞</span>
+                                        <p class="font-semibold">Telemarketer</p>
+                                        <p class="text-xs text-gray-600">Teleoperador</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🎯 Work Goals Vocabulary</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">Internship</p>
+                                        <p class="text-sm text-gray-600">Pasantía - trabajo para ganar experiencia</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">Experience</p>
+                                        <p class="text-sm text-gray-600">Experiencia laboral</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">Make money</p>
+                                        <p class="text-sm text-gray-600">Ganar dinero</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">Part-time job</p>
+                                        <p class="text-sm text-gray-600">Trabajo de medio tiempo</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">Full-time job</p>
+                                        <p class="text-sm text-gray-600">Trabajo de tiempo completo</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">Goal</p>
+                                        <p class="text-sm text-gray-600">Meta u objetivo</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-green-700 mb-3">💬 Talking About Jobs</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <p class="font-semibold text-green-600">Preguntar sobre el trabajo:</p>
+                                        <p><code>What do you do?</code> - ¿A qué te dedicas?</p>
+                                        <p><code>Where do you work?</code> - ¿Dónde trabajas?</p>
+                                        <p><code>Who do you work for?</code> - ¿Para quién trabajas?</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <p class="font-semibold text-green-600">Responder:</p>
+                                        <p><code>I'm a programmer.</code></p>
+                                        <p><code>I work in a hospital.</code></p>
+                                        <p><code>I work for myself.</code> - Trabajo por mi cuenta</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-green-600 mb-4">Gramática</h3>
+                            
+                            <!-- Can / Can't -->
+                            <div class="bg-green-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-green-700 mb-3">Can / Can't (Ability - Habilidad)</h4>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-green-200">
+                                                <th class="border border-green-300 p-3">Forma</th>
+                                                <th class="border border-green-300 p-3">Ejemplo</th>
+                                                <th class="border border-green-300 p-3">Traducción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-green-300 p-3 font-semibold">Afirmativo</td>
+                                                <td class="border border-green-300 p-3"><code>I can speak French.</code></td>
+                                                <td class="border border-green-300 p-3">Puedo hablar francés.</td>
+                                            </tr>
+                                            <tr class="bg-green-50">
+                                                <td class="border border-green-300 p-3 font-semibold">Negativo</td>
+                                                <td class="border border-green-300 p-3"><code>I can't speak Japanese.</code></td>
+                                                <td class="border border-green-300 p-3">No puedo hablar japonés.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-green-300 p-3 font-semibold">Pregunta Yes/No</td>
+                                                <td class="border border-green-300 p-3"><code>Can you drive?</code></td>
+                                                <td class="border border-green-300 p-3">¿Puedes conducir?</td>
+                                            </tr>
+                                            <tr class="bg-green-50">
+                                                <td class="border border-green-300 p-3 font-semibold">Respuesta corta</td>
+                                                <td class="border border-green-300 p-3"><code>Yes, I can. / No, I can't.</code></td>
+                                                <td class="border border-green-300 p-3">Sí, puedo. / No, no puedo.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-green-300 p-3 font-semibold">Pregunta Wh-</td>
+                                                <td class="border border-green-300 p-3"><code>Who can speak Japanese?</code></td>
+                                                <td class="border border-green-300 p-3">¿Quién puede hablar japonés?</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="mt-4 bg-yellow-100 p-4 rounded-lg">
+                                    <p class="font-semibold text-yellow-800">⚠️ Importante:</p>
+                                    <p class="text-sm">No se usa "to" después de can/can't</p>
+                                    <p class="text-sm">✅ I can <u>speak</u> English.</p>
+                                    <p class="text-sm">❌ I can <u>to speak</u> English.</p>
+                                </div>
+                            </div>
+
+                            <!-- Questions with like -->
+                            <div class="bg-emerald-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-emerald-700 mb-3">Questions with "like"</h4>
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                                        <h5 class="font-bold text-blue-700 mb-2">What's + noun + like?</h5>
+                                        <p class="text-sm text-gray-600 mb-2">Describe experiencia o cosa</p>
+                                        <div class="space-y-2">
+                                            <p class="bg-blue-50 p-2 rounded text-sm"><code>What's your job like?</code><br>- It's fun and interesting.</p>
+                                            <p class="bg-blue-50 p-2 rounded text-sm"><code>What's your boss like?</code><br>- She's very friendly.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                                        <h5 class="font-bold text-purple-700 mb-2">What + verb + like?</h5>
+                                        <p class="text-sm text-gray-600 mb-2">Describe gustos de persona</p>
+                                        <div class="space-y-2">
+                                            <p class="bg-purple-50 p-2 rounded text-sm"><code>What do you like?</code><br>- I like music and sports.</p>
+                                            <p class="bg-purple-50 p-2 rounded text-sm"><code>What does she like?</code><br>- She likes movies.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Adjetivos -->
+                            <div class="bg-teal-50 p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-teal-700 mb-3">Adjetivos para Describir</h4>
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h5 class="font-semibold text-teal-600 mb-2">Para experiencias/trabajos:</h5>
+                                        <ul class="space-y-1 text-sm">
+                                            <li>• Fun / Exciting ↔ Boring</li>
+                                            <li>• Safe ↔ Dangerous</li>
+                                            <li>• Easy ↔ Hard / Difficult</li>
+                                            <li>• Interesting ↔ Boring</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-teal-600 mb-2">Para personas:</h5>
+                                        <ul class="space-y-1 text-sm">
+                                            <li>• Friendly ↔ Unfriendly</li>
+                                            <li>• Shy ↔ Outgoing</li>
+                                            <li>• Hardworking ↔ Lazy</li>
+                                            <li>• Strict ↔ Easygoing</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Práctica -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-green-600 mb-4">🎯 Práctica - Quiz Unit 12</h3>
+                            <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg">
+                                <p class="text-center text-gray-600">Quiz interactivo en construcción...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Main Tab Navigation
+        let currentMainTab = 0;
+        function showMainTab(index) {
+            const tabs = document.querySelectorAll('.main-tab');
+            const panes = document.querySelectorAll('.tab-pane');
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('border-purple-600', 'bg-purple-50');
+                    tab.classList.remove('border-transparent');
+                } else {
+                    tab.classList.remove('border-purple-600', 'bg-purple-50');
+                    tab.classList.add('border-transparent');
+                }
+            });
+            
+            panes.forEach((pane, i) => {
+                pane.classList.toggle('hidden', i !== index);
+            });
+            
+            currentMainTab = index;
+        }
+
+        // Sub Tab Navigation
+        function showSubTab(unit, index) {
+            const tabs = document.querySelectorAll(`.sub-tab-${unit}`);
+            const panes = document.querySelectorAll(`.sub-content-${unit} .sub-pane`);
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('border-purple-600', 'text-purple-600');
+                    tab.classList.remove('border-transparent');
+                } else {
+                    tab.classList.remove('border-purple-600', 'text-purple-600');
+                    tab.classList.add('border-transparent');
+                }
+            });
+            
+            panes.forEach((pane, i) => {
+                pane.classList.toggle('hidden', i !== index);
+            });
+        }
+
+        // Flashcard Data
+        const flashcards = {
+            10: [
+                {emoji: '🛋️', word: 'Living room', translation: 'Sala de estar'},
+                {emoji: '🍽️', word: 'Dining room', translation: 'Comedor'},
+                {emoji: '👨‍🍳', word: 'Kitchen', translation: 'Cocina'},
+                {emoji: '🛏️', word: 'Bedroom', translation: 'Dormitorio'},
+                {emoji: '🚿', word: 'Bathroom', translation: 'Baño'},
+                {emoji: '🏡', word: 'Balcony', translation: 'Balcón'},
+                {emoji: '🚗', word: 'Garage', translation: 'Garaje'},
+                {emoji: '🪜', word: 'Stairs', translation: 'Escaleras'},
+                {emoji: '🪑', word: 'Chair', translation: 'Silla'},
+                {emoji: '🛋️', word: 'Sofa', translation: 'Sofá'}
+            ]
+        };
+
+        let currentFlashcard = {10: 0};
+        let flipped = {10: false};
+
+        function updateFlashcard(unit) {
+            const card = flashcards[unit][currentFlashcard[unit]];
+            document.getElementById(`flashcard-emoji-${unit}`).textContent = card.emoji;
+            document.getElementById(`flashcard-word-${unit}`).textContent = card.word;
+            document.getElementById(`flashcard-translation-${unit}`).textContent = card.translation;
+            document.getElementById(`flashcard-count-${unit}`).textContent = currentFlashcard[unit] + 1;
+            
+            if (!flipped[unit]) {
+                document.getElementById(`flashcard-translation-${unit}`).classList.add('hidden');
+            } else {
+                document.getElementById(`flashcard-translation-${unit}`).classList.remove('hidden');
+            }
+        }
+
+        function nextFlashcard(unit) {
+            currentFlashcard[unit] = (currentFlashcard[unit] + 1) % flashcards[unit].length;
+            flipped[unit] = false;
+            updateFlashcard(unit);
+        }
+
+        function prevFlashcard(unit) {
+            currentFlashcard[unit] = (currentFlashcard[unit] - 1 + flashcards[unit].length) % flashcards[unit].length;
+            flipped[unit] = false;
+            updateFlashcard(unit);
+        }
+
+        function flipFlashcard(unit) {
+            flipped[unit] = !flipped[unit];
+            updateFlashcard(unit);
+        }
+
+        // Chart.js - Concept Distribution
+        window.onload = function() {
+            showMainTab(0);
+            showSubTab(0, 0);
+            showSubTab(1, 0);
+            showSubTab(2, 0);
+            
+            const ctx = document.getElementById('conceptChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Unit 10: Home', 'Unit 11: Clothing', 'Unit 12: Jobs'],
+                        datasets: [{
+                            label: 'Conceptos principales',
+                            data: [8, 7, 9],
+                            backgroundColor: [
+                                'rgba(147, 51, 234, 0.7)',
+                                'rgba(236, 72, 153, 0.7)',
+                                'rgba(34, 197, 94, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgb(147, 51, 234)',
+                                'rgb(236, 72, 153)',
+                                'rgb(34, 197, 94)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 10
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        };
+
+        // Quiz functionality placeholder
+        function nextQuestion(unit) {
+            alert('Función de quiz en desarrollo. Este sería un sistema interactivo completo de preguntas y respuestas.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Interactivo: Basic 7 (Units 7-9)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gradient-to-br from-emerald-100 via-teal-50 to-green-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-2xl shadow-2xl p-8 mb-8">
+            <h1 class="text-4xl font-bold mb-2">📚 World Link Basic 7</h1>
+            <p class="text-xl opacity-90">Resumen Interactivo Completo - Units 7, 8, 9</p>
+            <p class="text-sm mt-2 opacity-75">Developing English Fluency | ICPNA Track 2</p>
+        </header>
+
+        <!-- Main Navigation -->
+        <nav class="bg-white rounded-xl shadow-lg mb-6 overflow-hidden">
+            <div class="flex flex-wrap">
+                <button onclick="showMainTab(0)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-teal-50 border-b-4 border-transparent transition-all">
+                    📊 General
+                </button>
+                <button onclick="showMainTab(1)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-teal-50 border-b-4 border-transparent transition-all">
+                    🏙️ Unit 7
+                </button>
+                <button onclick="showMainTab(2)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-teal-50 border-b-4 border-transparent transition-all">
+                    🎯 Unit 8
+                </button>
+                <button onclick="showMainTab(3)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-teal-50 border-b-4 border-transparent transition-all">
+                    🔄 Unit 9
+                </button>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="main-content">
+            <!-- TAB 0: GENERAL OVERVIEW -->
+            <div class="tab-pane">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-teal-700 mb-6">Descripción General del Curso</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-teal-50 to-emerald-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-teal-700 mb-3">🎯 Objetivos de Aprendizaje</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Preguntar y dar direcciones en la ciudad</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Usar cuantificadores <code class="bg-white px-2 py-1 rounded">how much/many, some, any</code></span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Hacer invitaciones y ofertas con <code class="bg-white px-2 py-1 rounded">Do you want to</code></span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Hablar de frecuencia con adverbios y expresiones de tiempo</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Describir personalidad y usar verbos con infinitivo</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Hablar sobre cambios y planes futuros con <code class="bg-white px-2 py-1 rounded">going to</code></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-green-700 mb-3">📈 Distribución de Conceptos</h3>
+                            <canvas id="conceptChart" class="mt-4"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-3">💡 Resumen por Unidad</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-teal-600">Unit 7: CITY LIFE</h4>
+                                <p class="text-gray-700">Lugares en el barrio, direcciones, preposiciones de lugar, cuantificadores</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-600">Unit 8: ALL ABOUT YOU</h4>
+                                <p class="text-gray-700">Deportes, personalidad, verbos + infinitivo, adverbios de frecuencia</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-green-600">Unit 9: CHANGE</h4>
+                                <p class="text-gray-700">Hábitos, metas, like to vs. would like to, going to para planes futuros</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 1: UNIT 7 - CITY LIFE -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-teal-700 mb-2">🏙️ Unit 7: CITY LIFE</h2>
+                    <p class="text-gray-600 mb-6">My Neighborhood & Big Cities</p>
+
+                    <!-- Sub-tabs for Unit 7 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(0, 0)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-teal-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(0, 1)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-teal-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(0, 2)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-teal-600 border-b-4 border-transparent">
+                            💬 Direcciones
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 7 -->
+                    <div class="sub-content-0">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-teal-600 mb-4">Vocabulario: Places in a Neighborhood</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🏪 Lugares en el Barrio</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">ATM</p>
+                                        <p class="text-xs text-gray-600">cajero automático</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">train station</p>
+                                        <p class="text-xs text-gray-600">estación de tren</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">coffee shop</p>
+                                        <p class="text-xs text-gray-600">cafetería</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">hair salon</p>
+                                        <p class="text-xs text-gray-600">peluquería</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">health club</p>
+                                        <p class="text-xs text-gray-600">gimnasio</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">newsstand</p>
+                                        <p class="text-xs text-gray-600">quiosco</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">grocery store</p>
+                                        <p class="text-xs text-gray-600">supermercado</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">bookstore</p>
+                                        <p class="text-xs text-gray-600">librería</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">bus station</p>
+                                        <p class="text-xs text-gray-600">terminal de buses</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">copy shop</p>
+                                        <p class="text-xs text-gray-600">copistería</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">gas station</p>
+                                        <p class="text-xs text-gray-600">gasolinera</p>
+                                    </div>
+                                    <div class="bg-teal-100 p-3 rounded-lg text-center hover:bg-teal-200 transition">
+                                        <p class="font-semibold">department store</p>
+                                        <p class="text-xs text-gray-600">tienda por departamentos</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🏙️ Vocabulario de Ciudades</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">rush hour</p>
+                                        <p class="text-sm text-gray-600">hora punta</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">traffic / heavy traffic</p>
+                                        <p class="text-sm text-gray-600">tráfico / tráfico pesado</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">stuck in traffic</p>
+                                        <p class="text-sm text-gray-600">atascado en el tráfico</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">pollution</p>
+                                        <p class="text-sm text-gray-600">contaminación</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">population</p>
+                                        <p class="text-sm text-gray-600">población</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-emerald-700">public transportation</p>
+                                        <p class="text-sm text-gray-600">transporte público</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-teal-600 mb-4">Gramática</h3>
+                            
+                            <!-- Prepositions of Place -->
+                            <div class="bg-teal-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-teal-700 mb-3">Prepositions of Place: at, on, in</h4>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-teal-200">
+                                                <th class="border border-teal-300 p-3">Uso</th>
+                                                <th class="border border-teal-300 p-3">Preposición</th>
+                                                <th class="border border-teal-300 p-3">Ejemplo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-teal-300 p-3">Edificio/lugar</td>
+                                                <td class="border border-teal-300 p-3 font-semibold">at</td>
+                                                <td class="border border-teal-300 p-3">at school, at home, at the mall</td>
+                                            </tr>
+                                            <tr class="bg-teal-50">
+                                                <td class="border border-teal-300 p-3">Calle</td>
+                                                <td class="border border-teal-300 p-3 font-semibold">on</td>
+                                                <td class="border border-teal-300 p-3">on Grant Avenue</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-teal-300 p-3">Piso</td>
+                                                <td class="border border-teal-300 p-3 font-semibold">on</td>
+                                                <td class="border border-teal-300 p-3">on the second floor</td>
+                                            </tr>
+                                            <tr class="bg-teal-50">
+                                                <td class="border border-teal-300 p-3">Habitación</td>
+                                                <td class="border border-teal-300 p-3 font-semibold">in</td>
+                                                <td class="border border-teal-300 p-3">in my classroom, in the kitchen</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-teal-300 p-3">Dirección completa</td>
+                                                <td class="border border-teal-300 p-3 font-semibold">at</td>
+                                                <td class="border border-teal-300 p-3">at 30 Grant Avenue</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- How much / How many -->
+                            <div class="bg-green-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-green-700 mb-3">How much / How many + Quantifiers</h4>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse text-sm">
+                                        <thead>
+                                            <tr class="bg-green-200">
+                                                <th class="border border-green-300 p-3"></th>
+                                                <th class="border border-green-300 p-3">Count Nouns</th>
+                                                <th class="border border-green-300 p-3">Noncount Nouns</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-green-300 p-3 font-semibold">Pregunta</td>
+                                                <td class="border border-green-300 p-3"><code>How many parks are there?</code></td>
+                                                <td class="border border-green-300 p-3"><code>How much pollution is there?</code></td>
+                                            </tr>
+                                            <tr class="bg-green-50">
+                                                <td class="border border-green-300 p-3 font-semibold">Afirmativo</td>
+                                                <td class="border border-green-300 p-3">a lot / many<br>some / a few<br>two, three...</td>
+                                                <td class="border border-green-300 p-3">a lot<br>some / a little</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-green-300 p-3 font-semibold">Negativo</td>
+                                                <td class="border border-green-300 p-3">not many<br>not any / none</td>
+                                                <td class="border border-green-300 p-3">not much<br>not any / none</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direcciones -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-teal-600 mb-4">💬 Dar y Pedir Direcciones</h3>
+                            
+                            <div class="bg-gradient-to-r from-teal-50 to-green-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-lg font-semibold text-teal-700 mb-3">Asking for Directions</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <p><code>Excuse me, where's the (Bridge Theater)?</code></p>
+                                        <p class="text-sm text-gray-600">Disculpe, ¿dónde está el teatro Bridge?</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <p><code>Is there a gas station near here?</code></p>
+                                        <p class="text-sm text-gray-600">¿Hay una gasolinera cerca?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-green-700 mb-3">Giving Directions</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                                        <p class="font-semibold text-green-700 mb-2">Ubicación:</p>
+                                        <p><code>It's on (Jay Street).</code></p>
+                                        <p><code>It's at 30 Grant Avenue.</code></p>
+                                        <p><code>It's in the middle of the block.</code></p>
+                                        <p><code>It's on the corner of Court Street and First Avenue.</code></p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                                        <p class="font-semibold text-blue-700 mb-2">Direcciones:</p>
+                                        <p><code>Go straight.</code> - Sigue derecho</p>
+                                        <p><code>Turn right/left (on Jay Street).</code> - Gira a la derecha/izquierda</p>
+                                        <p><code>Go one/two block(s).</code> - Ve una/dos cuadra(s)</p>
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                                        <p class="font-semibold text-purple-700 mb-2">Posición relativa:</p>
+                                        <p><code>next to</code> - al lado de</p>
+                                        <p><code>across from</code> - frente a</p>
+                                        <p><code>between</code> - entre</p>
+                                        <p><code>behind</code> - detrás de</p>
+                                        <p><code>in front of</code> - delante de</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: UNIT 8 - ALL ABOUT YOU -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-blue-700 mb-2">🎯 Unit 8: ALL ABOUT YOU</h2>
+                    <p class="text-gray-600 mb-6">Sports & Personality</p>
+
+                    <!-- Sub-tabs for Unit 8 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(1, 0)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-blue-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(1, 1)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-blue-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(1, 2)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-blue-600 border-b-4 border-transparent">
+                            👤 Personalidad
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 8 -->
+                    <div class="sub-content-1">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-4">Vocabulario: Sports & Activities</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">⚽ Deportes y Actividades</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">baseball</p>
+                                        <p class="text-xs text-gray-600">béisbol</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">basketball</p>
+                                        <p class="text-xs text-gray-600">baloncesto</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">volleyball</p>
+                                        <p class="text-xs text-gray-600">voleibol</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">badminton</p>
+                                        <p class="text-xs text-gray-600">bádminton</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">swimming</p>
+                                        <p class="text-xs text-gray-600">natación</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">ping pong</p>
+                                        <p class="text-xs text-gray-600">tenis de mesa</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">surfing</p>
+                                        <p class="text-xs text-gray-600">surf</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">skiing</p>
+                                        <p class="text-xs text-gray-600">esquí</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">yoga</p>
+                                        <p class="text-xs text-gray-600">yoga</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">judo</p>
+                                        <p class="text-xs text-gray-600">judo</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">bowling</p>
+                                        <p class="text-xs text-gray-600">bolos</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">jogging</p>
+                                        <p class="text-xs text-gray-600">trotar</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">hockey</p>
+                                        <p class="text-xs text-gray-600">hockey</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">tennis</p>
+                                        <p class="text-xs text-gray-600">tenis</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">soccer</p>
+                                        <p class="text-xs text-gray-600">fútbol</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded-lg text-center">
+                                        <p class="font-semibold">pilates</p>
+                                        <p class="text-xs text-gray-600">pilates</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-100 p-4 rounded-lg">
+                                <p class="font-semibold text-yellow-800">💡 Nota importante:</p>
+                                <p class="text-sm"><strong>play</strong> + game: play soccer, basketball, tennis</p>
+                                <p class="text-sm"><strong>do</strong> + activity: do yoga, judo, pilates</p>
+                                <p class="text-sm"><strong>go</strong> + verb-ing: go swimming, skiing, surfing, jogging</p>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-4">Gramática</h3>
+                            
+                            <!-- Verb + Infinitive -->
+                            <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-blue-700 mb-3">Verb + Infinitive (to + verb)</h4>
+                                
+                                <div class="bg-white p-4 rounded-lg mb-4">
+                                    <p class="font-semibold text-blue-700 mb-2">Estos verbos pueden ir seguidos de un infinitivo:</p>
+                                    <p class="text-sm">like, love, hate, need, want, plan, decide, prepare, learn, forget</p>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div class="bg-blue-100 p-3 rounded">
+                                        <p><code>I like to play volleyball.</code></p>
+                                        <p class="text-sm text-gray-600">Me gusta jugar voleibol.</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded">
+                                        <p><code>She wants to learn tennis.</code></p>
+                                        <p class="text-sm text-gray-600">Ella quiere aprender tenis.</p>
+                                    </div>
+                                    <div class="bg-blue-100 p-3 rounded">
+                                        <p><code>Do you need to buy sports equipment?</code></p>
+                                        <p class="text-sm text-gray-600">¿Necesitas comprar equipo deportivo?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Do you want to -->
+                            <div class="bg-green-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-green-700 mb-3">Making Invitations & Offers: Do you want...?</h4>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-green-200">
+                                                <th class="border border-green-300 p-3">Tipo</th>
+                                                <th class="border border-green-300 p-3">Ejemplo</th>
+                                                <th class="border border-green-300 p-3">Respuesta</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-green-300 p-3 font-semibold">Invitación<br>(+ to + verb)</td>
+                                                <td class="border border-green-300 p-3"><code>Do you want to come?</code></td>
+                                                <td class="border border-green-300 p-3">Sure, I'd love to.<br>Sorry, I can't. I'm busy.</td>
+                                            </tr>
+                                            <tr class="bg-green-50">
+                                                <td class="border border-green-300 p-3 font-semibold">Oferta<br>(+ noun)</td>
+                                                <td class="border border-green-300 p-3"><code>Do you want some ice cream?</code></td>
+                                                <td class="border border-green-300 p-3">Yes, please.<br>No, thanks. I'm fine.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Frequency Adverbs -->
+                            <div class="bg-purple-50 p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-purple-700 mb-3">Talking About Frequency</h4>
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-purple-700 mb-2">Pregunta:</p>
+                                        <p><code>How often do you check email?</code></p>
+                                        <p class="text-sm text-gray-600">¿Con qué frecuencia revisas el correo?</p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-purple-700 mb-2">Respuestas:</p>
+                                        <p class="text-sm">• once a day / week</p>
+                                        <p class="text-sm">• twice a week</p>
+                                        <p class="text-sm">• three times a week</p>
+                                        <p class="text-sm">• all the time</p>
+                                        <p class="text-sm">• hardly ever</p>
+                                        <p class="text-sm">• never</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personalidad -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-4">👤 Adjetivos de Personalidad</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">Adjetivos (Opuestos)</h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-indigo-50 p-4 rounded-lg">
+                                        <ul class="space-y-2">
+                                            <li class="flex justify-between"><span class="font-semibold">organized</span> <span class="text-gray-600">↔ messy</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">careful</span> <span class="text-gray-600">↔ careless</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">generous</span> <span class="text-gray-600">↔ selfish</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">talkative</span> <span class="text-gray-600">↔ reserved</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-indigo-50 p-4 rounded-lg">
+                                        <ul class="space-y-2">
+                                            <li class="flex justify-between"><span class="font-semibold">ambitious</span> <span class="text-gray-600">↔ laid-back</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">friendly</span> <span class="text-gray-600">↔ unfriendly</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">bright</span> <span class="text-gray-600">(inteligente)</span></li>
+                                            <li class="flex justify-between"><span class="font-semibold">competitive</span> <span class="text-gray-600">(competitivo)</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">Modificadores de Adjetivos</h4>
+                                <div class="bg-yellow-50 p-4 rounded-lg">
+                                    <p class="font-semibold text-yellow-800 mb-2">Para hacer adjetivos más fuertes:</p>
+                                    <p><strong>very</strong> organized / <strong>really</strong> ambitious</p>
+                                    
+                                    <p class="font-semibold text-yellow-800 mb-2 mt-3">Para hacer adjetivos negativos más suaves:</p>
+                                    <p><strong>a little (bit)</strong> selfish / <strong>somewhat</strong> reserved / <strong>kind of</strong> messy</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-blue-700 mb-3">Otros Adjetivos Útiles</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                                    <span class="bg-white px-3 py-2 rounded">creative</span>
+                                    <span class="bg-white px-3 py-2 rounded">impulsive</span>
+                                    <span class="bg-white px-3 py-2 rounded">private</span>
+                                    <span class="bg-white px-3 py-2 rounded">outgoing</span>
+                                    <span class="bg-white px-3 py-2 rounded">hardworking</span>
+                                    <span class="bg-white px-3 py-2 rounded">patient</span>
+                                    <span class="bg-white px-3 py-2 rounded">nervous</span>
+                                    <span class="bg-white px-3 py-2 rounded">relaxed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: UNIT 9 - CHANGE -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-green-700 mb-2">🔄 Unit 9: CHANGE</h2>
+                    <p class="text-gray-600 mb-6">Habits & Goals</p>
+
+                    <!-- Sub-tabs for Unit 9 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(2, 0)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-green-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(2, 1)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-green-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(2, 2)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-green-600 border-b-4 border-transparent">
+                            🎯 Metas
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 9 -->
+                    <div class="sub-content-2">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-green-600 mb-4">Vocabulario: Life Changes & Habits</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🔄 Cambios en la Vida</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-green-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-green-700">find / get a (new) job</p>
+                                        <p class="text-sm text-gray-600">encontrar/conseguir un (nuevo) trabajo</p>
+                                    </div>
+                                    <div class="bg-red-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-red-700">lose a job</p>
+                                        <p class="text-sm text-gray-600">perder un trabajo</p>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-green-700">make / earn (more) money</p>
+                                        <p class="text-sm text-gray-600">ganar (más) dinero</p>
+                                    </div>
+                                    <div class="bg-red-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-red-700">earn less money</p>
+                                        <p class="text-sm text-gray-600">ganar menos dinero</p>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-green-700">be in good shape</p>
+                                        <p class="text-sm text-gray-600">estar en buena forma</p>
+                                    </div>
+                                    <div class="bg-red-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-red-700">be in bad shape / out of shape</p>
+                                        <p class="text-sm text-gray-600">estar en mala forma</p>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-green-700">start exercising</p>
+                                        <p class="text-sm text-gray-600">empezar a hacer ejercicio</p>
+                                    </div>
+                                    <div class="bg-red-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-red-700">gain weight</p>
+                                        <p class="text-sm text-gray-600">subir de peso</p>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-green-700">lose weight</p>
+                                        <p class="text-sm text-gray-600">bajar de peso</p>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-green-700">stop / quit smoking</p>
+                                        <p class="text-sm text-gray-600">dejar de fumar</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🎯 Metas y Objetivos</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-blue-700">goal</p>
+                                        <p class="text-sm text-gray-600">meta, objetivo</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-blue-700">get ready (to do something)</p>
+                                        <p class="text-sm text-gray-600">prepararse (para hacer algo)</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-blue-700">prepare</p>
+                                        <p class="text-sm text-gray-600">preparar</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-blue-700">apply for (a job)</p>
+                                        <p class="text-sm text-gray-600">solicitar (un trabajo)</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-blue-700">take time off</p>
+                                        <p class="text-sm text-gray-600">tomarse un tiempo libre</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-blue-700">take it easy / relax</p>
+                                        <p class="text-sm text-gray-600">relajarse, tomarlo con calma</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-blue-700">it takes time</p>
+                                        <p class="text-sm text-gray-600">toma tiempo</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-100 p-4 rounded-lg">
+                                <p class="font-semibold text-yellow-800">📌 Vocabulario adicional:</p>
+                                <p class="text-sm"><strong>(New Year's) resolution</strong> - propósito de año nuevo</p>
+                                <p class="text-sm"><strong>(good/bad) habit</strong> - (buen/mal) hábito</p>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-green-600 mb-4">Gramática</h3>
+                            
+                            <!-- like to vs would like to -->
+                            <div class="bg-green-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-green-700 mb-3">like to vs. would like to</h4>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-green-200">
+                                                <th class="border border-green-300 p-3">Estructura</th>
+                                                <th class="border border-green-300 p-3">Uso</th>
+                                                <th class="border border-green-300 p-3">Ejemplo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-green-300 p-3 font-semibold">like to + verb</td>
+                                                <td class="border border-green-300 p-3">Hablar de gustos generales (siempre)</td>
+                                                <td class="border border-green-300 p-3"><code>I like to play soccer on weekends.</code></td>
+                                            </tr>
+                                            <tr class="bg-green-50">
+                                                <td class="border border-green-300 p-3 font-semibold">would like to + verb</td>
+                                                <td class="border border-green-300 p-3">Hablar de deseos específicos (ahora/futuro)</td>
+                                                <td class="border border-green-300 p-3"><code>I'd like to visit Japan next year.</code></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="mt-4 space-y-2">
+                                    <p class="bg-blue-100 p-2 rounded"><strong>General:</strong> <code>What do you like to do?</code> - I like to travel.</p>
+                                    <p class="bg-purple-100 p-2 rounded"><strong>Específico:</strong> <code>What would you like to do this weekend?</code> - I'd like to see a movie.</p>
+                                </div>
+                            </div>
+
+                            <!-- Going to -->
+                            <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-blue-700 mb-3">Future with "going to"</h4>
+                                
+                                <div class="overflow-x-auto mb-4">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-blue-200">
+                                                <th class="border border-blue-300 p-3">Tipo</th>
+                                                <th class="border border-blue-300 p-3">Estructura</th>
+                                                <th class="border border-blue-300 p-3">Ejemplo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-blue-300 p-3 font-semibold">Afirmativo</td>
+                                                <td class="border border-blue-300 p-3">be + going to + verb</td>
+                                                <td class="border border-blue-300 p-3"><code>I'm going to start college.</code></td>
+                                            </tr>
+                                            <tr class="bg-blue-50">
+                                                <td class="border border-blue-300 p-3 font-semibold">Negativo</td>
+                                                <td class="border border-blue-300 p-3">be + not + going to + verb</td>
+                                                <td class="border border-blue-300 p-3"><code>She's not going to quit her job.</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-blue-300 p-3 font-semibold">Yes/No Question</td>
+                                                <td class="border border-blue-300 p-3">Be + subject + going to + verb?</td>
+                                                <td class="border border-blue-300 p-3"><code>Are you going to travel?</code></td>
+                                            </tr>
+                                            <tr class="bg-blue-50">
+                                                <td class="border border-blue-300 p-3 font-semibold">Wh- Question</td>
+                                                <td class="border border-blue-300 p-3">Wh- + be + subject + going to + verb?</td>
+                                                <td class="border border-blue-300 p-3"><code>When are you going to start?</code></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="bg-yellow-100 p-4 rounded-lg">
+                                    <p class="font-semibold text-yellow-800">Uso:</p>
+                                    <p>Usamos "going to" para hablar de planes futuros que ya decidimos.</p>
+                                </div>
+                            </div>
+
+                            <!-- Making Requests -->
+                            <div class="bg-purple-50 p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-purple-700 mb-3">Making and Responding to Requests</h4>
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                                        <h5 class="font-bold text-purple-700 mb-2">Hacer una petición:</h5>
+                                        <div class="space-y-2 text-sm">
+                                            <p><code>Can I borrow your phone?</code></p>
+                                            <p><code>Could I borrow your phone?</code></p>
+                                            <p><code>May I borrow your phone?</code></p>
+                                            <p><code>Could you lend me your phone?</code></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <h5 class="font-bold text-green-700 mb-2">Respuestas positivas:</h5>
+                                        <div class="space-y-2 text-sm">
+                                            <p><code>Sure. No problem.</code></p>
+                                            <p><code>Certainly.</code></p>
+                                            <p><code>Of course.</code></p>
+                                        </div>
+                                        
+                                        <h5 class="font-bold text-red-700 mb-2 mt-3">Respuestas negativas:</h5>
+                                        <p class="text-sm"><code>I'm sorry, but... (+ reason)</code></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metas -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-green-600 mb-4">🎯 Hablando sobre Metas y Cambios</h3>
+                            
+                            <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-lg font-semibold text-green-700 mb-3">Expresiones Útiles para Hablar de Metas</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-green-600">Establecer una meta:</p>
+                                        <p><code>My goal is to...</code></p>
+                                        <p><code>I want to...</code></p>
+                                        <p><code>I'd like to...</code></p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-blue-600">Hablar de planes:</p>
+                                        <p><code>I'm going to...</code></p>
+                                        <p><code>First, I'm going to...</code></p>
+                                        <p><code>Then, I'm going to...</code></p>
+                                        <p><code>Finally, I'm going to...</code></p>
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-purple-600">Dar consejos sobre hábitos:</p>
+                                        <p><code>You should...</code></p>
+                                        <p><code>You shouldn't...</code></p>
+                                        <p><code>Why don't you...?</code></p>
+                                        <p><code>Try to...</code></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-yellow-700 mb-3">💡 Ejemplo: Describir una Meta</h4>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="mb-2"><strong>My goal is to</strong> get in better shape.</p>
+                                    <p class="mb-2"><strong>To do this, first, I'm going to</strong> start exercising three times a week.</p>
+                                    <p class="mb-2"><strong>Also, I'm going to</strong> eat healthier food.</p>
+                                    <p><strong>Finally, I'm going to</strong> stop eating junk food.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Main Tab Navigation
+        let currentMainTab = 0;
+        function showMainTab(index) {
+            const tabs = document.querySelectorAll('.main-tab');
+            const panes = document.querySelectorAll('.tab-pane');
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('border-teal-600', 'bg-teal-50');
+                    tab.classList.remove('border-transparent');
+                } else {
+                    tab.classList.remove('border-teal-600', 'bg-teal-50');
+                    tab.classList.add('border-transparent');
+                }
+            });
+            
+            panes.forEach((pane, i) => {
+                pane.classList.toggle('hidden', i !== index);
+            });
+            
+            currentMainTab = index;
+        }
+
+        // Sub Tab Navigation
+        function showSubTab(unit, index) {
+            const tabs = document.querySelectorAll(`.sub-tab-${unit}`);
+            const panes = document.querySelectorAll(`.sub-content-${unit} .sub-pane`);
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('border-teal-600', 'text-teal-600');
+                    tab.classList.remove('border-transparent');
+                } else {
+                    tab.classList.remove('border-teal-600', 'text-teal-600');
+                    tab.classList.add('border-transparent');
+                }
+            });
+            
+            panes.forEach((pane, i) => {
+                pane.classList.toggle('hidden', i !== index);
+            });
+        }
+
+        // Chart.js - Concept Distribution
+        window.onload = function() {
+            showMainTab(0);
+            showSubTab(0, 0);
+            showSubTab(1, 0);
+            showSubTab(2, 0);
+            
+            const ctx = document.getElementById('conceptChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Unit 7: City Life', 'Unit 8: All About You', 'Unit 9: Change'],
+                        datasets: [{
+                            label: 'Conceptos principales',
+                            data: [10, 9, 8],
+                            backgroundColor: [
+                                'rgba(20, 184, 166, 0.7)',
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(34, 197, 94, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgb(20, 184, 166)',
+                                'rgb(59, 130, 246)',
+                                'rgb(34, 197, 94)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 12
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        };
+    </script>
+</body>
+</html>

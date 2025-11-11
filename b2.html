@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Interactivo: Basic 2 (4-6)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutrals (Stone) with Soft Amber Accent -->
+    <!-- Application Structure Plan: Se utiliza la misma estructura de SPA basada en pestañas que fue exitosa en la versión anterior (Basic 1). La navegación principal permite cambiar entre 'Descripción General', 'Unidad 4', 'Unidad 5' y 'Unidad 6'. La 'Descripción General' presenta un gráfico de barras (Chart.js) que compara la cantidad de conceptos de vocabulario y gramática en estas nuevas unidades. Cada página de unidad tiene sub-pestañas para 'Gramática' (reglas en tablas claras), 'Vocabulario' (flashcards interactivas) y 'Práctica' (quizzes de autoevaluación). Este diseño de 'hub de estudio' permite al usuario elegir su enfoque (revisar, memorizar, practicar) y transforma el contenido estático del TXT en una herramienta de aprendizaje dinámica y efectiva. -->
+    <!-- Visualization & Content Choices: 1. Estructura del Curso (Unidades 4-6): Goal=Informar. Viz=Gráfico de Barras (Chart.js/Canvas). Interaction=Hover para tooltips. Justification=Visualiza la carga de temas por unidad. 2. Reglas Gramaticales (Presente Simple, There is/are, Contables): Goal=Organizar/Comparar. Viz=Tablas HTML con Tailwind. Interaction=N/A (Presentación clara). Justification=Método más claro para reglas comparativas. 3. Listas de Vocabulario (Familia, Hogar, Comida): Goal=Memorizar/Interactuar. Viz='Flashcards' (HTML/JS). Interaction=Click para voltear (Español/Inglés), botones Siguiente/Anterior. Justification=Transforma listas estáticas en herramienta de estudio activa. 4. Ejercicios (Completar frases, elegir 'some/any'): Goal=Evaluar/Practicar. Viz=Formulario de Quiz (HTML/JS). Interaction=Input de usuario, botón 'Verificar' con feedback instantáneo. Justification=Digitaliza las hojas de trabajo del TXT para autoevaluación. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flashcard {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .flashcard-face {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flashcard.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+        .main-tab {
+            transition: all 0.3s ease;
+        }
+        .main-tab.active {
+            border-color: #D97706;
+            background-color: #FEF3C7;
+            color: #B45309;
+            font-weight: 600;
+        }
+        .unit-tab {
+            transition: all 0.3s ease;
+        }
+        .unit-tab.active {
+            background-color: #F59E0B;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 font-sans text-stone-800 antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-stone-700 mb-2">Resumen Interactivo: Basic 2</h1>
+            <p class="text-lg text-stone-600">Una herramienta de estudio para las Unidades 4, 5 y 6</p>
+        </header>
+
+        <nav class="flex justify-center space-x-2 md:space-x-4 mb-8 border-b border-stone-300 pb-4">
+            <button class="main-tab active text-sm md:text-base font-medium text-stone-600 py-2 px-3 md:px-5 rounded-lg border-2 border-transparent hover:bg-stone-200" data-target="page-overview">Descripción General</button>
+            <button class="main-tab text-sm md:text-base font-medium text-stone-600 py-2 px-3 md:px-5 rounded-lg border-2 border-transparent hover:bg-stone-200" data-target="page-unit-4">Unidad 4</button>
+            <button class="main-tab text-sm md:text-base font-medium text-stone-600 py-2 px-3 md:px-5 rounded-lg border-2 border-transparent hover:bg-stone-200" data-target="page-unit-5">Unidad 5</button>
+            <button class="main-tab text-sm md:text-base font-medium text-stone-600 py-2 px-3 md:px-5 rounded-lg border-2 border-transparent hover:bg-stone-200" data-target="page-unit-6">Unidad 6</button>
+        </nav>
+
+        <main id="content-area">
+            
+            <section id="page-overview" class="page-content">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-amber-700 mb-4">Bienvenido a tu Resumen (Parte 2)</h2>
+                    <p class="text-stone-700 mb-6">
+                        Esta aplicación cubre las unidades 4, 5 y 6 de tu curso. Al igual que antes, puedes usar las pestañas para explorar la gramática, practicar el vocabulario con tarjetas interactivas y poner a prueba tus conocimientos con ejercicios.
+                    </p>
+                    <p class="text-stone-700 mb-6">
+                        La siguiente gráfica muestra los conceptos clave (temas de gramática y vocabulario) que se cubren en cada una de estas tres unidades.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="unitChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-unit-4" class="page-content hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold text-stone-700 mb-2">Unidad 4: Family and Friends</h2>
+                    <p class="text-lg text-stone-600 mb-6">Temas: Familia, amigos, presente simple y frecuencia.</p>
+                    
+                    <div class="flex justify-center space-x-2 mb-6 border-b border-stone-200 pb-4">
+                        <button class="unit-tab active py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-4-grammar">Gramática</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-4-vocab">Vocabulario</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-4-practice">Práctica</button>
+                    </div>
+
+                    <div id="unit-4-grammar" class="unit-content">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Gramática: Presente Simple</h3>
+                        
+                        <h4 class="text-lg font-semibold text-stone-700 mt-4 mb-2">Reglas para 'He', 'She', 'It'</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max border border-stone-300 rounded-md">
+                                <thead class="bg-stone-100">
+                                    <tr>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Regla</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Ejemplo (Base)</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Ejemplo (He/She/It)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3">General (Añadir -s)</td>
+                                        <td class="p-3">work, live, play</td>
+                                        <td class="p-3">work<span class="font-bold text-amber-600">s</span>, live<span class="font-bold text-amber-600">s</span>, play<span class="font-bold text-amber-600">s</span></td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200 bg-stone-50">
+                                        <td class="p-3">Termina en -s, -sh, -ch, -x, -o</td>
+                                        <td class="p-3">watch, go, do, miss</td>
+                                        <td class="p-3">watch<span class="font-bold text-amber-600">es</span>, go<span class="font-bold text-amber-600">es</span>, do<span class="font-bold text-amber-600">es</span>, miss<span class="font-bold text-amber-600">es</span></td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3">Consonante + y</td>
+                                        <td class="p-3">study, try</td>
+                                        <td class="p-3">stud<span class="font-bold text-amber-600">ies</span>, tr<span class="font-bold text-amber-600">ies</span></td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200 bg-stone-50">
+                                        <td class="p-3">Irregular</td>
+                                        <td class="p-3">have</td>
+                                        <td class="p-3">h<span class="font-bold text-amber-600">as</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-stone-700 mt-6 mb-2">Adverbios de Frecuencia</h4>
+                        <p class="text-stone-700 mb-4">Indican qué tan seguido ocurre algo. Van <span class="font-semibold">antes</span> del verbo principal (pero <span class="font-semibold">después</span> del verbo 'be').</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li>100% - <span class="font-semibold">always</span> (siempre) - *He always works late.*</li>
+                            <li>80% - <span class="font-semibold">usually</span> (usualmente) - *She usually studies at night.*</li>
+                            <li>50% - <span class="font-semibold">sometimes</span> (a veces) - *I sometimes watch TV.*</li>
+                            <li>10% - <span class="font-semibold">hardly ever</span> (casi nunca) - *They hardly ever go out.*</li>
+                            <li>0% - <span class="font-semibold">never</span> (nunca) - *It never snows here.*</li>
+                        </ul>
+
+                        <h4 class="text-lg font-semibold text-stone-700 mt-6 mb-2">Preguntas con 'When' y 'What time'</h4>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li><span class="font-semibold">When</span> do you study? (¿Cuándo estudias?) - *At night.*</li>
+                            <li><span class="font-semibold">What time</span> does she start work? (¿A qué hora...?) - *At 9:00.*</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="unit-4-vocab" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Vocabulario: Flashcards</h3>
+                        <p class="text-stone-600 mb-4 text-center">Haz clic en la tarjeta para ver la traducción.</p>
+                        
+                        <div class="relative w-full max-w-sm mx-auto h-48 perspective">
+                            <div id="flashcard-u4" class="flashcard relative w-full h-full">
+                                <div id="flashcard-u4-front" class="flashcard-face absolute w-full h-full bg-white border-2 border-amber-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-stone-700"></span>
+                                </div>
+                                <div id="flashcard-u4-back" class="flashcard-face flashcard-back absolute w-full h-full bg-amber-50 border-2 border-amber-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-amber-700"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between max-w-sm mx-auto mt-6">
+                            <button id="prev-u4" class="py-2 px-5 bg-stone-300 text-stone-700 font-semibold rounded-lg shadow hover:bg-stone-400">&larr; Anterior</button>
+                            <button id="next-u4" class="py-2 px-5 bg-amber-600 text-white font-semibold rounded-lg shadow hover:bg-amber-700">Siguiente &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div id="unit-4-practice" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Práctica: Presente Simple</h3>
+                        
+                        <div class="space-y-4 max-w-md mx-auto">
+                            <div id="quiz-u4-item">
+                                <p id="quiz-u4-question" class="text-lg text-stone-700 mb-2 text-center"></p>
+                                <div class="flex space-x-2">
+                                    <input id="quiz-u4-input" type="text" class="flex-grow p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="Escribe el verbo...">
+                                    <button id="quiz-u4-check" class="py-2 px-5 bg-amber-600 text-white font-semibold rounded-lg shadow hover:bg-amber-700">Verificar</button>
+                                </div>
+                                <p id="quiz-u4-feedback" class="mt-2 text-center font-medium h-6"></p>
+                            </div>
+                            <button id="quiz-u4-next" class="w-full py-2 px-5 bg-stone-600 text-white font-semibold rounded-lg shadow hover:bg-stone-700 hidden">Siguiente Pregunta</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-unit-5" class="page-content hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold text-stone-700 mb-2">Unidad 5: At Home</h2>
+                    <p class="text-lg text-stone-600 mb-6">Temas: Partes de la casa, 'There is/are', preposiciones.</p>
+
+                    <div class="flex justify-center space-x-2 mb-6 border-b border-stone-200 pb-4">
+                        <button class="unit-tab active py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-5-grammar">Gramática</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-5-vocab">Vocabulario</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-5-practice">Práctica</button>
+                    </div>
+
+                    <div id="unit-5-grammar" class="unit-content">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Gramática: There is / There are</h3>
+                        <p class="text-stone-700 mb-4">Usamos 'There is' / 'There are' para decir que algo existe (equivale a "hay").</p>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max border border-stone-300 rounded-md">
+                                <thead class="bg-stone-100">
+                                    <tr>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Tipo</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Singular</th>
+                                        <th class="p-3 text-left font-semibold text-stone-600">Plural</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3">Afirmativo (+)</td>
+                                        <td class="p-3"><span class="font-semibold">There is</span> a book. (Hay un libro)</td>
+                                        <td class="p-3"><span class="font-semibold">There are</span> two books. (Hay dos libros)</td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200 bg-stone-50">
+                                        <td class="p-3">Negativo (-)</td>
+                                        <td class="p-3"><span class="font-semibold">There isn't</span> a book. (No hay...)</td>
+                                        <td class="p-3"><span class="font-semibold">There aren't</span> any books. (No hay...)</td>
+                                    </tr>
+                                    <tr class="border-t border-stone-200">
+                                        <td class="p-3">Pregunta (?)</td>
+                                        <td class="p-3"><span class="font-semibold">Is there</span> a book?</td>
+                                        <td class="p-3"><span class="font-semibold">Are there</span> any books?</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-stone-700 mt-6 mb-2">'Some' y 'Any'</h4>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li>Usamos <span class="font-semibold">'some'</span> (algunos/as) en oraciones afirmativas plurales.<br>
+                                *Ej: There are <span class="font-semibold">some</span> chairs in the kitchen.*</li>
+                            <li>Usamos <span class="font-semibold">'any'</span> (ningún/o/a, algunos/as) en oraciones negativas y preguntas plurales.<br>
+                                *Ej: There aren't <span class="font-semibold">any</span> chairs. / Are there <span class="font-semibold">any</span> chairs?*</li>
+                        </ul>
+                        
+                        <h4 class="text-lg font-semibold text-stone-700 mt-6 mb-2">Preposiciones de Lugar</h4>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li><span class="font-semibold">in</span> (en, dentro de) - *in the box*</li>
+                            <li><span class="font-semibold">on</span> (en, sobre) - *on the table*</li>
+                            <li><span class="font-semibold">under</span> (debajo de) - *under the chair*</li>
+                            <li><span class="font-semibold">next to</span> (al lado de) - *next to the sofa*</li>
+                            <li><span class="font-semibold">behind</span> (detrás de) - *behind the door*</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="unit-5-vocab" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Vocabulario: Flashcards</h3>
+                        <p class="text-stone-600 mb-4 text-center">Haz clic en la tarjeta para ver la traducción.</p>
+                        
+                        <div class="relative w-full max-w-sm mx-auto h-48 perspective">
+                            <div id="flashcard-u5" class="flashcard relative w-full h-full">
+                                <div id="flashcard-u5-front" class="flashcard-face absolute w-full h-full bg-white border-2 border-amber-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-stone-700"></span>
+                                </div>
+                                <div id="flashcard-u5-back" class="flashcard-face flashcard-back absolute w-full h-full bg-amber-50 border-2 border-amber-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-amber-700"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between max-w-sm mx-auto mt-6">
+                            <button id="prev-u5" class="py-2 px-5 bg-stone-300 text-stone-700 font-semibold rounded-lg shadow hover:bg-stone-400">&larr; Anterior</button>
+                            <button id="next-u5" class="py-2 px-5 bg-amber-600 text-white font-semibold rounded-lg shadow hover:bg-amber-700">Siguiente &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div id="unit-5-practice" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Práctica: Elige la Palabra Correcta</h3>
+                        
+                        <div class="space-y-4 max-w-md mx-auto">
+                            <div id="quiz-u5-item">
+                                <p id="quiz-u5-question" class="text-lg text-stone-700 mb-2 text-center"></p>
+                                <div class="flex space-x-2">
+                                    <input id="quiz-u5-input" type="text" class="flex-grow p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="Escribe 'is'/'are'/'some'/'any'...">
+                                    <button id="quiz-u5-check" class="py-2 px-5 bg-amber-600 text-white font-semibold rounded-lg shadow hover:bg-amber-700">Verificar</button>
+                                </div>
+                                <p id="quiz-u5-feedback" class="mt-2 text-center font-medium h-6"></p>
+                            </div>
+                            <button id="quiz-u5-next" class="w-full py-2 px-5 bg-stone-600 text-white font-semibold rounded-lg shadow hover:bg-stone-700 hidden">Siguiente Pregunta</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-unit-6" class="page-content hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold text-stone-700 mb-2">Unidad 6: Food</h2>
+                    <p class="text-lg text-stone-600 mb-6">Temas: Comida, contables y no contables, 'How much/many'.</p>
+
+                    <div class="flex justify-center space-x-2 mb-6 border-b border-stone-200 pb-4">
+                        <button class="unit-tab active py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-6-grammar">Gramática</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-6-vocab">Vocabulario</button>
+                        <button class="unit-tab py-2 px-4 rounded-full bg-stone-200 text-stone-700 hover:bg-amber-500 hover:text-white" data-target="unit-6-practice">Práctica</button>
+                    </div>
+
+                    <div id="unit-6-grammar" class="unit-content">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Gramática: Contables y No Contables</h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-stone-700 mb-2">Sustantivos Contables (Count)</h4>
+                                <p class="text-stone-700 mb-2">Cosas que podemos contar. Tienen singular y plural.</p>
+                                <ul class="list-disc list-inside space-y-1 text-stone-700">
+                                    <li>an <span class="font-semibold">apple</span> &rarr; two <span class="font-semibold">apples</span></li>
+                                    <li>a <span class="font-semibold">cookie</span> &rarr; some <span class="font-semibold">cookies</span></li>
+                                    <li>a <span class="font-semibold">tomato</span> &rarr; many <span class="font-semibold">tomatoes</span></li>
+                                </ul>
+                                <p class="text-stone-700 mt-4">Preguntamos con <span class="font-bold">'How many?'</span>:</p>
+                                <p class="text-stone-700 italic">*<span class="font-semibold">How many</span> apples do we have?*</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-stone-700 mb-2">Sustantivos No Contables (Non-Count)</h4>
+                                <p class="text-stone-700 mb-2">Cosas que no podemos contar (líquidos, granos, ideas). Solo tienen forma singular.</p>
+                                <ul class="list-disc list-inside space-y-1 text-stone-700">
+                                    <li><span class="font-semibold">water</span> (no "waters")</li>
+                                    <li><span class="font-semibold">rice</span> (no "rices")</li>
+                                    <li><span class="font-semibold">milk</span>, <span class="font-semibold">juice</span>, <span class="font-semibold">money</span>, <span class="font-semibold">fruit</span></li>
+                                </ul>
+                                <p class="text-stone-700 mt-4">Preguntamos con <span class="font-bold">'How much?'</span>:</p>
+                                <p class="text-stone-700 italic">*<span class="font-semibold">How much</span> water is there?*</p>
+                            </div>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-stone-700 mt-6 mb-2">'a lot of' / 'lots of'</h4>
+                        <p class="text-stone-700 mb-4">Significa "mucho/a/os/as". Se puede usar con <span class="font-semibold">ambos</span>, contables y no contables, en oraciones afirmativas.</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li>There is <span class="font-semibold">a lot of</span> rice. (No Contable)</li>
+                            <li>There are <span class="font-semibold">lots of</span> apples. (Contable)</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="unit-6-vocab" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Vocabulario: Flashcards</h3>
+                        <p class="text-stone-600 mb-4 text-center">Haz clic en la tarjeta para ver la traducción.</p>
+                        
+                        <div class="relative w-full max-w-sm mx-auto h-48 perspective">
+                            <div id="flashcard-u6" class="flashcard relative w-full h-full">
+                                <div id="flashcard-u6-front" class="flashcard-face absolute w-full h-full bg-white border-2 border-amber-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-stone-700"></span>
+                                </div>
+                                <div id="flashcard-u6-back" class="flashcard-face flashcard-back absolute w-full h-full bg-amber-50 border-2 border-amber-500 rounded-lg shadow-lg flex items-center justify-center p-4">
+                                    <span class="text-3xl font-bold text-amber-700"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between max-w-sm mx-auto mt-6">
+                            <button id="prev-u6" class="py-2 px-5 bg-stone-300 text-stone-700 font-semibold rounded-lg shadow hover:bg-stone-400">&larr; Anterior</button>
+                            <button id="next-u6" class="py-2 px-5 bg-amber-600 text-white font-semibold rounded-lg shadow hover:bg-amber-700">Siguiente &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div id="unit-6-practice" class="unit-content hidden">
+                        <h3 class="text-2xl font-semibold text-amber-700 mb-4">Práctica: Elige 'How much' o 'How many'</h3>
+                        
+                        <div class="space-y-4 max-w-md mx-auto">
+                            <div id="quiz-u6-item">
+                                <p id="quiz-u6-question" class="text-lg text-stone-700 mb-2 text-center"></p>
+                                <div class="flex space-x-2">
+                                    <input id="quiz-u6-input" type="text" class="flex-grow p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="Escribe 'much' o 'many'...">
+                                    <button id="quiz-u6-check" class="py-2 px-5 bg-amber-600 text-white font-semibold rounded-lg shadow hover:bg-amber-700">Verificar</button>
+                                </div>
+                                <p id="quiz-u6-feedback" class="mt-2 text-center font-medium h-6"></p>
+                            </div>
+                            <button id="quiz-u6-next" class="w-full py-2 px-5 bg-stone-600 text-white font-semibold rounded-lg shadow hover:bg-stone-700 hidden">Siguiente Pregunta</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const mainTabs = document.querySelectorAll('.main-tab');
+            const mainPages = document.querySelectorAll('.page-content');
+            
+            mainTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    mainTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    mainPages.forEach(page => {
+                        page.classList.add('hidden');
+                    });
+                    
+                    const targetPage = document.getElementById(tab.dataset.target);
+                    if (targetPage) {
+                        targetPage.classList.remove('hidden');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.page-content').forEach(unitPage => {
+                const unitTabs = unitPage.querySelectorAll('.unit-tab');
+                const unitContents = unitPage.querySelectorAll('.unit-content');
+                
+                unitTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        unitTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        
+                        unitContents.forEach(content => {
+                            content.classList.add('hidden');
+                        });
+                        
+                        const targetContent = unitPage.querySelector(`#${tab.dataset.target}`);
+                        if (targetContent) {
+                            targetContent.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+
+            const vocab = {
+                u4: [
+                    { es: 'Familia', en: 'Family' },
+                    { es: 'Madre', en: 'Mother' },
+                    { es: 'Padre', en: 'Father' },
+                    { es: 'Hermano', en: 'Brother' },
+                    { es: 'Hermana', en: 'Sister' },
+                    { es: 'Amigos', en: 'Friends' },
+                    { es: 'Siempre', en: 'Always' },
+                    { es: 'Usualmente', en: 'Usually' },
+                    { es: 'A veces', en: 'Sometimes' },
+                    { es: 'Casi nunca', en: 'Hardly ever' },
+                    { es: 'Nunca', en: 'Never' },
+                ],
+                u5: [
+                    { es: 'Casa', en: 'Home / House' },
+                    { es: 'Sala', en: 'Living room' },
+                    { es: 'Cocina', en: 'Kitchen' },
+                    { es: 'Dormitorio', en: 'Bedroom' },
+                    { es: 'Baño', en: 'Bathroom' },
+                    { es: 'En / Dentro de', en: 'in' },
+                    { es: 'Sobre / En', en: 'on' },
+                    { es: 'Debajo de', en: 'under' },
+                    { es: 'Al lado de', en: 'next to' },
+                    { es: 'Detrás de', en: 'behind' },
+                ],
+                u6: [
+                    { es: 'Comida', en: 'Food' },
+                    { es: 'Manzana', en: 'Apple' },
+                    { es: 'Arroz', en: 'Rice' },
+                    { es: 'Agua', en: 'Water' },
+                    { es: 'Leche', en: 'Milk' },
+                    { es: 'Galleta', en: 'Cookie' },
+                    { es: 'Jugo', en: 'Juice' },
+                    { es: 'Dinero', en: 'Money' },
+                    { es: 'Fruta', en: 'Fruit' },
+                    { es: 'Mucho/s', en: 'A lot of / Lots of' },
+                ]
+            };
+
+            const quizzes = {
+                u4: [
+                    { q: "She (work) ___ in an office.", a: 'works' },
+                    { q: "He (study) ___ English.", a: 'studies' },
+                    { q: "My father (have) ___ a car.", a: 'has' },
+                    { q: "It (go) ___ very fast.", a: 'goes' },
+                    { q: "The class (watch) ___ movies.", a: 'watches' },
+                    { q: "He ___ (nunca) eats vegetables.", a: 'never' },
+                    { q: "___ time does the movie start?", a: 'What' },
+                ],
+                u5: [
+                    { q: 'There ___ a sofa in the living room.', a: 'is' },
+                    { q: 'There ___ two chairs.', a: 'are' },
+                    { q: '___ there a bathroom?', a: 'Is' },
+                    { q: 'Are there ___ students?', a: 'any' },
+                    { q: "There aren't ___ windows.", a: 'any' },
+                    { q: 'There are ___ books on the table.', a: 'some' },
+                    { q: 'The cat is ___ the table.', a: 'under' },
+                ],
+                u6: [
+                    { q: 'How ___ apples are there?', a: 'many' },
+                    { q: 'How ___ water do you drink?', a: 'much' },
+                    { q: 'How ___ money do you have?', a: 'much' },
+                    { q: 'How ___ cookies did you eat?', a: 'many' },
+                    { q: 'There is ___ of rice.', a: 'a lot' },
+                    { q: 'We need ___ (algunas) tomatoes.', a: 'some' },
+                ]
+            };
+            
+            function setupFlashcards(unit) {
+                let currentIndex = 0;
+                const data = vocab[unit];
+                const card = document.getElementById(`flashcard-${unit}`);
+                const front = document.getElementById(`flashcard-${unit}-front`).querySelector('span');
+                const back = document.getElementById(`flashcard-${unit}-back`).querySelector('span');
+                const nextBtn = document.getElementById(`next-${unit}`);
+                const prevBtn = document.getElementById(`prev-${unit}`);
+
+                function showCard(index) {
+                    if (!data || data.length === 0) return;
+                    card.classList.remove('is-flipped');
+                    setTimeout(() => {
+                        front.textContent = data[index].es;
+                        back.textContent = data[index].en;
+                    }, 200);
+                }
+
+                card.addEventListener('click', () => {
+                    card.classList.toggle('is-flipped');
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % data.length;
+                    showCard(currentIndex);
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + data.length) % data.length;
+                    showCard(currentIndex);
+                });
+
+                showCard(0);
+            }
+            
+            function setupQuiz(unit) {
+                let currentQuizIndex = 0;
+                const data = quizzes[unit];
+                const questionEl = document.getElementById(`quiz-${unit}-question`);
+                const inputEl = document.getElementById(`quiz-${unit}-input`);
+                const checkBtn = document.getElementById(`quiz-${unit}-check`);
+                const feedbackEl = document.getElementById(`quiz-${unit}-feedback`);
+                const nextBtn = document.getElementById(`quiz-${unit}-next`);
+
+                function showQuiz(index) {
+                    if (!data || data.length === 0) return;
+                    questionEl.textContent = data[index].q;
+                    inputEl.value = '';
+                    feedbackEl.textContent = '';
+                    inputEl.disabled = false;
+                    checkBtn.classList.remove('hidden');
+                    nextBtn.classList.add('hidden');
+                    feedbackEl.classList.remove('text-green-600', 'text-red-600');
+                }
+
+                checkBtn.addEventListener('click', () => {
+                    const userAnswer = inputEl.value.trim().toLowerCase();
+                    const correctAnswer = data[currentQuizIndex].a.toLowerCase();
+
+                    if (userAnswer === correctAnswer) {
+                        feedbackEl.textContent = '¡Correcto!';
+                        feedbackEl.classList.add('text-green-600');
+                        inputEl.disabled = true;
+                        checkBtn.classList.add('hidden');
+                        if (currentQuizIndex < data.length - 1) {
+                            nextBtn.classList.remove('hidden');
+                        } else {
+                            feedbackEl.textContent = '¡Completaste la práctica!';
+                        }
+                    } else {
+                        feedbackEl.textContent = `Incorrecto. La respuesta es: ${data[currentQuizIndex].a}`;
+                        feedbackEl.classList.add('text-red-600');
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentQuizIndex++;
+                    showQuiz(currentQuizIndex);
+                });
+
+                showQuiz(0);
+            }
+
+            setupFlashcards('u4');
+            setupQuiz('u4');
+            setupFlashcards('u5');
+            setupQuiz('u5');
+            setupFlashcards('u6');
+            setupQuiz('u6');
+
+            const ctx = document.getElementById('unitChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Unidad 4: Family', 'Unidad 5: At Home', 'Unidad 6: Food'],
+                    datasets: [{
+                        label: 'Conceptos Clave (Gramática + Vocab)',
+                        data: [
+                            vocab.u4.length + 3,
+                            vocab.u5.length + 3,
+                            vocab.u6.length + 3
+                        ],
+                        backgroundColor: [
+                            'rgba(245, 158, 11, 0.6)',
+                            'rgba(217, 119, 6, 0.6)',
+                            'rgba(180, 83, 9, 0.6)'
+                        ],
+                        borderColor: [
+                            '#F59E0B',
+                            '#D97706',
+                            '#B45309'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#44403C'
+                            },
+                            grid: {
+                                color: '#F5F5F4'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#44403C'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#1E293B',
+                            titleFont: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 12
+                            },
+                            padding: 10,
+                            cornerRadius: 4
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

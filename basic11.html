@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Interactivo: Basic 11 (Units 7-9)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-2xl shadow-2xl p-8 mb-8">
+            <h1 class="text-4xl font-bold mb-2">📚 World Link Basic 11</h1>
+            <p class="text-xl opacity-90">Resumen Interactivo Completo - Units 7, 8, 9</p>
+            <p class="text-sm mt-2 opacity-75">Developing English Fluency | ICPNA Track 2</p>
+        </header>
+
+        <!-- Main Navigation -->
+        <nav class="bg-white rounded-xl shadow-lg mb-6 overflow-hidden">
+            <div class="flex flex-wrap">
+                <button onclick="showMainTab(0)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-orange-50 border-b-4 border-transparent transition-all">
+                    📊 General
+                </button>
+                <button onclick="showMainTab(1)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-orange-50 border-b-4 border-transparent transition-all">
+                    🎉 Unit 7
+                </button>
+                <button onclick="showMainTab(2)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-orange-50 border-b-4 border-transparent transition-all">
+                    📖 Unit 8
+                </button>
+                <button onclick="showMainTab(3)" class="main-tab flex-1 px-6 py-4 font-semibold text-gray-700 hover:bg-orange-50 border-b-4 border-transparent transition-all">
+                    💼 Unit 9
+                </button>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="main-content">
+            <!-- TAB 0: GENERAL OVERVIEW -->
+            <div class="tab-pane">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-orange-700 mb-6">Descripción General del Curso</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-orange-700 mb-3">🎯 Objetivos de Aprendizaje</h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Hacer, aceptar y rechazar invitaciones</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Usar <code class="bg-white px-2 py-1 rounded">so, too, neither, either</code> para estar de acuerdo</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Conectar eventos con <code class="bg-white px-2 py-1 rounded">before, after, when</code></span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Describir historias y mantener narrativas usando transiciones</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Usar pasado continuo y adverbios de manera</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Entrevistar para trabajos y usar verbos + infinitivo</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-yellow-700 mb-3">📈 Distribución de Conceptos</h3>
+                            <canvas id="conceptChart" class="mt-4"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-3">💡 Resumen por Unidad</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-orange-600">Unit 7: CELEBRATIONS</h4>
+                                <p class="text-gray-700">Fiestas, festivales, invitaciones, acuerdos con so/too/neither/either, time clauses</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-amber-600">Unit 8: STORYTELLING</h4>
+                                <p class="text-gray-700">Historias, cuentos de hadas, pasado continuo, adverbios de manera</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-yellow-600">Unit 9: WORK</h4>
+                                <p class="text-gray-700">Trabajos, entrevistas, características laborales, verbos + infinitivo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 1: UNIT 7 - CELEBRATIONS -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-orange-700 mb-2">🎉 Unit 7: CELEBRATIONS</h2>
+                    <p class="text-gray-600 mb-6">Parties & Festivals and Holidays</p>
+
+                    <!-- Sub-tabs for Unit 7 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(0, 0)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-orange-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(0, 1)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-orange-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(0, 2)" class="sub-tab-0 px-6 py-3 font-semibold text-gray-600 hover:text-orange-600 border-b-4 border-transparent">
+                            💬 Conversación
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 7 -->
+                    <div class="sub-content-0">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-orange-600 mb-4">Vocabulario: Celebrations & Festivals</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🎊 Fiestas (Parties)</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">celebrate</p>
+                                        <p class="text-sm text-gray-600">celebrar</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">throw a party</p>
+                                        <p class="text-sm text-gray-600">hacer una fiesta</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">have a party</p>
+                                        <p class="text-sm text-gray-600">tener una fiesta</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">invite</p>
+                                        <p class="text-sm text-gray-600">invitar</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">get together</p>
+                                        <p class="text-sm text-gray-600">reunirse</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">plan (for)</p>
+                                        <p class="text-sm text-gray-600">planear</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">decorate</p>
+                                        <p class="text-sm text-gray-600">decorar</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">guests</p>
+                                        <p class="text-sm text-gray-600">invitados</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">occasion</p>
+                                        <p class="text-sm text-gray-600">ocasión</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-orange-700">have a good time</p>
+                                        <p class="text-sm text-gray-600">pasarla bien</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🎪 Festivales</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">take place</p>
+                                        <p class="text-sm text-gray-600">tener lugar, ocurrir</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">participate (in)</p>
+                                        <p class="text-sm text-gray-600">participar</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">compete</p>
+                                        <p class="text-sm text-gray-600">competir</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">perform</p>
+                                        <p class="text-sm text-gray-600">actuar, presentarse</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">race</p>
+                                        <p class="text-sm text-gray-600">carrera</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">prize</p>
+                                        <p class="text-sm text-gray-600">premio</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">gather</p>
+                                        <p class="text-sm text-gray-600">reunirse, juntarse</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">tradition</p>
+                                        <p class="text-sm text-gray-600">tradición</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-orange-600 mb-4">Gramática</h3>
+                            
+                            <!-- So, too, neither, either -->
+                            <div class="bg-orange-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-orange-700 mb-3">Agreeing: so, too, neither, either</h4>
+                                
+                                <div class="overflow-x-auto mb-4">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-orange-200">
+                                                <th class="border border-orange-300 p-3">Statement</th>
+                                                <th class="border border-orange-300 p-3">Agreement</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-orange-300 p-3"><code>I'm going to the party.</code></td>
+                                                <td class="border border-orange-300 p-3"><code>So am I. / I am too. / Me too.</code></td>
+                                            </tr>
+                                            <tr class="bg-orange-50">
+                                                <td class="border border-orange-300 p-3"><code>I'm not going to the party.</code></td>
+                                                <td class="border border-orange-300 p-3"><code>Neither am I. / I'm not either. / Me neither.</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-orange-300 p-3"><code>I have a costume.</code></td>
+                                                <td class="border border-orange-300 p-3"><code>So do I. / I do too. / Me too.</code></td>
+                                            </tr>
+                                            <tr class="bg-orange-50">
+                                                <td class="border border-orange-300 p-3"><code>I don't have a costume.</code></td>
+                                                <td class="border border-orange-300 p-3"><code>Neither do I. / I don't either. / Me neither.</code></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="bg-yellow-100 p-4 rounded-lg">
+                                    <p class="font-semibold text-yellow-800">💡 Nota:</p>
+                                    <p><strong>Me too</strong> y <strong>Me neither</strong> son muy comunes en conversación casual.</p>
+                                </div>
+                            </div>
+
+                            <!-- Time Clauses -->
+                            <div class="bg-amber-50 p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-amber-700 mb-3">Time Clauses: before, after, when</h4>
+                                
+                                <div class="overflow-x-auto mb-4">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-amber-200">
+                                                <th class="border border-amber-300 p-3">Time Clause</th>
+                                                <th class="border border-amber-300 p-3">Main Clause</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-amber-300 p-3"><code>Before the festival starts,</code></td>
+                                                <td class="border border-amber-300 p-3"><code>people decorate.</code></td>
+                                            </tr>
+                                            <tr class="bg-amber-50">
+                                                <td class="border border-amber-300 p-3"><code>After the party ended,</code></td>
+                                                <td class="border border-amber-300 p-3"><code>we went home.</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-amber-300 p-3"><code>When you throw powder,</code></td>
+                                                <td class="border border-amber-300 p-3"><code>you say "Holi Hai!"</code></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <p class="bg-green-100 p-2 rounded"><strong>También puedes invertir el orden:</strong></p>
+                                    <p class="bg-green-100 p-2 rounded"><code>People decorate before the festival starts.</code></p>
+                                    <p class="text-sm text-gray-600">Nota: No uses coma cuando la main clause va primero.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conversación -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-orange-600 mb-4">💬 Invitaciones</h3>
+                            
+                            <div class="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-orange-700 mb-3">Making, Accepting & Refusing Invitations</h4>
+                                
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-orange-600 mb-2">Invitar:</p>
+                                        <p class="text-sm"><code>Do you want to go with me?</code></p>
+                                        <p class="text-sm"><code>Would you like to come?</code></p>
+                                        <p class="text-sm"><code>How'd you like to go?</code></p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-green-600 mb-2">Aceptar:</p>
+                                        <p class="text-sm"><code>Sure, I'd love to.</code></p>
+                                        <p class="text-sm"><code>That sounds great.</code></p>
+                                        <p class="text-sm"><code>I'd love to go.</code></p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-red-600 mb-2">Rechazar:</p>
+                                        <p class="text-sm"><code>I'm sorry, but I can't.</code></p>
+                                        <p class="text-sm"><code>I'd love to, but I'm busy.</code></p>
+                                        <p class="text-sm"><code>Unfortunately, I have to work.</code></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: UNIT 8 - STORYTELLING -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-amber-700 mb-2">📖 Unit 8: STORYTELLING</h2>
+                    <p class="text-gray-600 mb-6">What's the story about? & Modern Fairy Tales</p>
+
+                    <!-- Sub-tabs for Unit 8 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(1, 0)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-amber-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(1, 1)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-amber-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(1, 2)" class="sub-tab-1 px-6 py-3 font-semibold text-gray-600 hover:text-amber-600 border-b-4 border-transparent">
+                            💬 Conversación
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 8 -->
+                    <div class="sub-content-1">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-amber-600 mb-4">Vocabulario: Stories & Fairy Tales</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">📺 Describiendo Historias</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">tell / be about</p>
+                                        <p class="text-sm text-gray-600">tratar de, contar sobre</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">made-up</p>
+                                        <p class="text-sm text-gray-600">inventado, ficticio</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">characters</p>
+                                        <p class="text-sm text-gray-600">personajes</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">realistic ↔ unrealistic</p>
+                                        <p class="text-sm text-gray-600">realista ↔ poco realista</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">violent</p>
+                                        <p class="text-sm text-gray-600">violento</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">fantasy</p>
+                                        <p class="text-sm text-gray-600">fantasía</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">based on</p>
+                                        <p class="text-sm text-gray-600">basado en</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">unpredictable ↔ predictable</p>
+                                        <p class="text-sm text-gray-600">impredecible ↔ predecible</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">hard to follow ↔ easy to follow</p>
+                                        <p class="text-sm text-gray-600">difícil/fácil de seguir</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">🧚 Cuentos de Hadas</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">discover</p>
+                                        <p class="text-sm text-gray-600">descubrir</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">overcome</p>
+                                        <p class="text-sm text-gray-600">superar</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">struggle</p>
+                                        <p class="text-sm text-gray-600">luchar</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">survive</p>
+                                        <p class="text-sm text-gray-600">sobrevivir</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">clever</p>
+                                        <p class="text-sm text-gray-600">inteligente</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">incredible</p>
+                                        <p class="text-sm text-gray-600">increíble</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">heartwarming</p>
+                                        <p class="text-sm text-gray-600">conmovedor</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">heartbreaking</p>
+                                        <p class="text-sm text-gray-600">desgarrador</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">uplifting</p>
+                                        <p class="text-sm text-gray-600">inspirador</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-amber-600 mb-4">Gramática</h3>
+                            
+                            <!-- Past Continuous -->
+                            <div class="bg-amber-50 p-6 rounded-lg mb-6">
+                                <h4 class="text-xl font-bold text-amber-700 mb-3">Past Continuous Tense</h4>
+                                
+                                <div class="overflow-x-auto mb-4">
+                                    <table class="w-full border-collapse">
+                                        <thead>
+                                            <tr class="bg-amber-200">
+                                                <th class="border border-amber-300 p-3">Subject</th>
+                                                <th class="border border-amber-300 p-3">was/were (not)</th>
+                                                <th class="border border-amber-300 p-3">Verb + ing</th>
+                                                <th class="border border-amber-300 p-3">Example</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-amber-300 p-3">I / He / She</td>
+                                                <td class="border border-amber-300 p-3">was(n't)</td>
+                                                <td class="border border-amber-300 p-3">studying</td>
+                                                <td class="border border-amber-300 p-3">at 4 o'clock.</td>
+                                            </tr>
+                                            <tr class="bg-amber-50">
+                                                <td class="border border-amber-300 p-3">You / We / They</td>
+                                                <td class="border border-amber-300 p-3">were(n't)</td>
+                                                <td class="border border-amber-300 p-3">reading</td>
+                                                <td class="border border-amber-300 p-3">last night.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <p class="bg-blue-100 p-2 rounded"><strong>Questions:</strong> <code>Were you reading? / What were you reading?</code></p>
+                                    <p class="bg-green-100 p-2 rounded"><strong>Uso:</strong> Para hablar de acciones en progreso en un momento específico del pasado.</p>
+                                </div>
+                            </div>
+
+                            <!-- Adverbs of Manner -->
+                            <div class="bg-yellow-50 p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-yellow-700 mb-3">Adverbs of Manner</h4>
+                                
+                                <div class="bg-white p-4 rounded-lg mb-4">
+                                    <p class="font-semibold text-yellow-700 mb-2">Formación:</p>
+                                    <p>Muchos adverbios terminan en <strong>-ly</strong> y describen cómo se hace algo.</p>
+                                    <p class="text-sm mt-2">• slow → slowly • quiet → quietly • careful → carefully</p>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <p class="bg-yellow-100 p-2 rounded"><code>She smiled shyly at him.</code></p>
+                                    <p class="bg-yellow-100 p-2 rounded"><code>He opened the door quietly.</code></p>
+                                    <p class="bg-yellow-100 p-2 rounded"><code>They answered the question correctly.</code></p>
+                                </div>
+
+                                <div class="mt-4 bg-red-100 p-4 rounded-lg">
+                                    <p class="font-semibold text-red-800">⚠️ Excepciones:</p>
+                                    <p>• <strong>fast</strong> (NOT fastly) • <strong>hard</strong> (NOT hardly) • <strong>well</strong> (NOT goodly)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conversación -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-amber-600 mb-4">💬 Keeping a Story Going</h3>
+                            
+                            <div class="bg-gradient-to-r from-amber-50 to-yellow-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-amber-700 mb-3">Transitions para Narrativas</h4>
+                                
+                                <div class="bg-white p-4 rounded-lg mb-4">
+                                    <p class="font-semibold text-amber-600 mb-2">Para mantener una historia avanzando:</p>
+                                    <div class="space-y-2">
+                                        <p><code>One day,...</code></p>
+                                        <p><code>So, (then),...</code></p>
+                                        <p><code>Later,...</code></p>
+                                        <p><code>After that,...</code></p>
+                                        <p><code>As it turns out,...</code></p>
+                                        <p><code>It turns out that...</code></p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-100 p-4 rounded-lg">
+                                    <p class="font-semibold text-blue-700 mb-2">Ejemplo:</p>
+                                    <p class="text-sm"><strong>One day,</strong> I met an old woman. <strong>So, then,</strong> she told me a story. <strong>Later,</strong> I discovered something amazing. <strong>As it turns out,</strong> she was my grandmother!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: UNIT 9 - WORK -->
+            <div class="tab-pane hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-yellow-700 mb-2">💼 Unit 9: WORK</h2>
+                    <p class="text-gray-600 mb-6">Workplace Traits & Dream Jobs</p>
+
+                    <!-- Sub-tabs for Unit 9 -->
+                    <div class="flex space-x-2 mb-6 border-b-2">
+                        <button onclick="showSubTab(2, 0)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-yellow-600 border-b-4 border-transparent">
+                            📖 Vocabulario
+                        </button>
+                        <button onclick="showSubTab(2, 1)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-yellow-600 border-b-4 border-transparent">
+                            ✏️ Gramática
+                        </button>
+                        <button onclick="showSubTab(2, 2)" class="sub-tab-2 px-6 py-3 font-semibold text-gray-600 hover:text-yellow-600 border-b-4 border-transparent">
+                            💬 Entrevistas
+                        </button>
+                    </div>
+
+                    <!-- Sub-content Unit 9 -->
+                    <div class="sub-content-2">
+                        <!-- Vocabulario -->
+                        <div class="sub-pane">
+                            <h3 class="text-2xl font-bold text-yellow-600 mb-4">Vocabulario: Work & Jobs</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">👤 Características Laborales</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">responsible</p>
+                                        <p class="text-sm text-gray-600">responsable</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">punctual</p>
+                                        <p class="text-sm text-gray-600">puntual</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">adventurous</p>
+                                        <p class="text-sm text-gray-600">aventurero</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">flexible</p>
+                                        <p class="text-sm text-gray-600">flexible</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">cautious</p>
+                                        <p class="text-sm text-gray-600">cauteloso</p>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-yellow-700">courageous</p>
+                                        <p class="text-sm text-gray-600">valiente</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">💼 Descripción de Trabajos</h4>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">demanding</p>
+                                        <p class="text-sm text-gray-600">exigente</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">dull</p>
+                                        <p class="text-sm text-gray-600">aburrido</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">rewarding</p>
+                                        <p class="text-sm text-gray-600">gratificante</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">well paid ↔ low paid</p>
+                                        <p class="text-sm text-gray-600">bien pagado ↔ mal pagado</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">glamorous</p>
+                                        <p class="text-sm text-gray-600">glamoroso</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">hazardous</p>
+                                        <p class="text-sm text-gray-600">peligroso</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">exhausting</p>
+                                        <p class="text-sm text-gray-600">agotador</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <p class="font-semibold text-amber-700">dead-end</p>
+                                        <p class="text-sm text-gray-600">sin futuro</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gramática -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-yellow-600 mb-4">Gramática</h3>
+                            
+                            <!-- Verbs + Infinitive -->
+                            <div class="bg-yellow-50 p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-yellow-700 mb-3">Verbs + Infinitive (to + verb)</h4>
+                                
+                                <div class="bg-white p-4 rounded-lg mb-4">
+                                    <p class="font-semibold text-yellow-700 mb-2">Verbos seguidos de infinitivo:</p>
+                                    <p class="text-sm">like, want, need, plan, decide, hope, expect, learn, prefer</p>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <p class="bg-yellow-100 p-2 rounded"><code>I like to sing.</code> - Me gusta cantar.</p>
+                                    <p class="bg-yellow-100 p-2 rounded"><code>I want to be a singer.</code> - Quiero ser cantante.</p>
+                                    <p class="bg-yellow-100 p-2 rounded"><code>She needed to move to London for work.</code></p>
+                                    <p class="bg-yellow-100 p-2 rounded"><code>They plan to travel next year.</code></p>
+                                </div>
+
+                                <div class="mt-4 bg-blue-100 p-4 rounded-lg">
+                                    <p class="font-semibold text-blue-800">Diferentes significados:</p>
+                                    <p class="text-sm">• <strong>like to</strong> = disfrutar hacer algo</p>
+                                    <p class="text-sm">• <strong>want to</strong> = desear hacer algo</p>
+                                    <p class="text-sm">• <strong>need to</strong> = necesitar hacer algo</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Entrevistas -->
+                        <div class="sub-pane hidden">
+                            <h3 class="text-2xl font-bold text-yellow-600 mb-4">💬 Entrevistas de Trabajo</h3>
+                            
+                            <div class="bg-gradient-to-r from-yellow-50 to-amber-50 p-6 rounded-lg">
+                                <h4 class="text-lg font-semibold text-yellow-700 mb-3">Job Interview Expressions</h4>
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-yellow-600 mb-2">Entrevistador dice:</p>
+                                        <p class="text-sm"><code>Thanks for coming in today.</code></p>
+                                        <p class="text-sm"><code>Tell me a little about yourself.</code></p>
+                                        <p class="text-sm"><code>Do you have any experience...?</code></p>
+                                        <p class="text-sm"><code>When can you start?</code></p>
+                                        <p class="text-sm"><code>I'll be in touch.</code></p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="font-semibold text-green-600 mb-2">Candidato responde:</p>
+                                        <p class="text-sm"><code>Thank you for having me.</code></p>
+                                        <p class="text-sm"><code>I graduated from...</code></p>
+                                        <p class="text-sm"><code>Yes, I worked at...</code></p>
+                                        <p class="text-sm"><code>I can start immediately.</code></p>
+                                        <p class="text-sm"><code>I look forward to hearing from you.</code></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Main Tab Navigation
+        let currentMainTab = 0;
+        function showMainTab(index) {
+            const tabs = document.querySelectorAll('.main-tab');
+            const panes = document.querySelectorAll('.tab-pane');
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('border-orange-600', 'bg-orange-50');
+                    tab.classList.remove('border-transparent');
+                } else {
+                    tab.classList.remove('border-orange-600', 'bg-orange-50');
+                    tab.classList.add('border-transparent');
+                }
+            });
+            
+            panes.forEach((pane, i) => {
+                pane.classList.toggle('hidden', i !== index);
+            });
+            
+            currentMainTab = index;
+        }
+
+        // Sub Tab Navigation
+        function showSubTab(unit, index) {
+            const tabs = document.querySelectorAll(`.sub-tab-${unit}`);
+            const panes = document.querySelectorAll(`.sub-content-${unit} .sub-pane`);
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('border-orange-600', 'text-orange-600');
+                    tab.classList.remove('border-transparent');
+                } else {
+                    tab.classList.remove('border-orange-600', 'text-orange-600');
+                    tab.classList.add('border-transparent');
+                }
+            });
+            
+            panes.forEach((pane, i) => {
+                pane.classList.toggle('hidden', i !== index);
+            });
+        }
+
+        // Chart.js - Concept Distribution
+        window.onload = function() {
+            showMainTab(0);
+            showSubTab(0, 0);
+            showSubTab(1, 0);
+            showSubTab(2, 0);
+            
+            const ctx = document.getElementById('conceptChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Unit 7: Celebrations', 'Unit 8: Storytelling', 'Unit 9: Work'],
+                        datasets: [{
+                            label: 'Conceptos principales',
+                            data: [10, 9, 8],
+                            backgroundColor: [
+                                'rgba(249, 115, 22, 0.7)',
+                                'rgba(245, 158, 11, 0.7)',
+                                'rgba(234, 179, 8, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgb(249, 115, 22)',
+                                'rgb(245, 158, 11)',
+                                'rgb(234, 179, 8)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 12
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        };
+    </script>
+</body>
+</html>
